@@ -24,8 +24,16 @@ class TweetTableViewCell: UITableViewCell {
 
     func loadStatus(status: TwitterStatus) {
         nameLabel.text = status.user?.name
-        screenNameLabel.text = status.user?.screenName
+        screenNameLabel.text = "@\(status.user!.screenName!)"
         tweetTextLabel.text = status.text
+        
+        var timeIntervalFormater = TTTTimeIntervalFormatter()
+        timeLagel.text = timeIntervalFormater.stringForTimeIntervalFromDate(
+            NSDate(), toDate: status.createdAt!)
+        
+        thumnailImageView.layer.cornerRadius = CGFloat(5)
+        thumnailImageView.layer.masksToBounds = true
+        thumnailImageView.setImageWithURL(NSURL(string: status.user!.profileImageUrl!))
     }
     
 }

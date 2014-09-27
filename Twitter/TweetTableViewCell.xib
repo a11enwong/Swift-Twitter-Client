@@ -7,8 +7,8 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="118" id="KGk-i7-Jjw" customClass="TweetTableViewCell" customModule="Twitter" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="407" height="118"/>
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" rowHeight="111" id="KGk-i7-Jjw" customClass="TweetTableViewCell" customModule="Twitter" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="429" height="111"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
                 <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
@@ -22,32 +22,32 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hector Mon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Us-Ij-dTj">
-                        <rect key="frame" x="76" y="11" width="71" height="16"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                        <rect key="frame" x="76" y="11" width="72" height="16"/>
+                        <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="@hectorups" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7G-Ss-bmy">
-                        <rect key="frame" x="161" y="11" width="174" height="16"/>
+                        <rect key="frame" x="158" y="11" width="199" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="just now" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xkw-BW-C46">
-                        <rect key="frame" x="348" y="11" width="51" height="16"/>
+                        <rect key="frame" x="370" y="11" width="51" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
-                        <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" misplaced="YES" text="Label asdfoiasdfj asdfasdf" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sas-Mg-6F6">
-                        <rect key="frame" x="76" y="35" width="323" height="67"/>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" horizontalCompressionResistancePriority="1000" text="Label asdfoiasdfj asdfasdf" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sas-Mg-6F6">
+                        <rect key="frame" x="76" y="38" width="345" height="60"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="m7G-Ss-bmy" firstAttribute="leading" secondItem="7Us-Ij-dTj" secondAttribute="trailing" constant="14" id="DCO-wi-cUO"/>
+                    <constraint firstItem="m7G-Ss-bmy" firstAttribute="leading" secondItem="7Us-Ij-dTj" secondAttribute="trailing" constant="10" id="DCO-wi-cUO"/>
                     <constraint firstItem="Dap-Jf-A62" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="FWC-C7-2Pa"/>
                     <constraint firstItem="7Us-Ij-dTj" firstAttribute="leading" secondItem="Dap-Jf-A62" secondAttribute="trailing" constant="8" id="Fpd-hE-VtH"/>
                     <constraint firstItem="Sas-Mg-6F6" firstAttribute="trailing" secondItem="H2p-sc-9uM" secondAttribute="trailingMargin" id="LRu-8j-Fls"/>
@@ -69,7 +69,7 @@
                 <outlet property="timeLagel" destination="Xkw-BW-C46" id="pg7-F9-bBZ"/>
                 <outlet property="tweetTextLabel" destination="Sas-Mg-6F6" id="1YX-5O-577"/>
             </connections>
-            <point key="canvasLocation" x="360.5" y="234"/>
+            <point key="canvasLocation" x="371.5" y="230.5"/>
         </tableViewCell>
     </objects>
 </document>

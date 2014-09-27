@@ -18,6 +18,18 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        navigationController?.navigationBar.barTintColor = ColorPalette.Blue.get()
+        navigationController?.navigationBar.titleTextAttributes = NSDictionary(
+            object: ColorPalette.White.get(), forKey: NSForegroundColorAttributeName)
+        title = "Home"
+        
+        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out",
+            style: UIBarButtonItemStyle.Plain, target: self, action: "onSignOut")
+        self.navigationItem.leftBarButtonItem?.tintColor = ColorPalette.White.get()
+        
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "New",
+            style: UIBarButtonItemStyle.Plain, target: self, action: "onNewTweet")
+        self.navigationItem.rightBarButtonItem?.tintColor = ColorPalette.White.get()
         
         tableView.delegate = self
         tableView.dataSource = self
@@ -74,6 +86,14 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
                 
                 self.tableView.reloadData()
             }, failure: failureHandler)
+    }
+    
+    func onSignOut() {
+        println("sign out")
+    }
+    
+    func onNewTweet() {
+        println("new tweet")
     }
 
 }
