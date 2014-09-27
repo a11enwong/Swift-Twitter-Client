@@ -21,9 +21,9 @@ class LoginViewController: UIViewController {
     
     
     override func viewDidAppear(animated: Bool) {
-        if let key = defaults.objectForKey("key") as? String {
-            let secret = defaults.objectForKey("secret") as String
-            let credentialToken = SwifterCredential.OAuthAccessToken(key: key, secret: secret)
+        if let data = defaults.objectForKey("account") as NSData? {
+            let account = NSKeyedUnarchiver.unarchiveObjectWithData(data) as TwitterAccount
+            let credentialToken = SwifterCredential.OAuthAccessToken(key: account.key, secret: account.secret)
             swifter.client.credential = SwifterCredential(accessToken: credentialToken)
             goToHomeController()
         }
@@ -44,14 +44,7 @@ class LoginViewController: UIViewController {
         swifter.authorizeWithCallbackURL(NSURL(string: "codepathtwitter://success"), success: {
             accessToken, response in
                 println("logged with tweeter")
-                let account = self.swifter.client.credential?.account
-                println(self.swifter.client.credential!.accessToken?.key)
-                println(self.swifter.client.credential!.accessToken?.secret)
-                let accessToken = self.swifter.client.credential!.accessToken!
-                self.defaults.setObject(accessToken.key, forKey: "key")
-                self.defaults.setObject(accessToken.secret, forKey: "secret")
-
-                self.goToHomeController()
+                self.verifyCredentials()
             },failure: failureHandler
         )
     }
@@ -63,18 +56,35 @@ class LoginViewController: UIViewController {
     }
     
     func fetchTwitterHomeStream() {
-        let failureHandler: ((NSError) -> Void) = {
-            error in
-            println("error fetching tweets")
-            println(error)
-        }
-        
         println(swifter.client.credential?.accessToken?.key)
         swifter.getStatusesHomeTimelineWithCount(20, sinceID: nil, maxID: nil, trimUser: true,
             contributorDetails: false, includeEntities: true, success: {
                 (statuses: [JSONValue]?) in
                 println("fetched successfully")
-            }, failure: failureHandler)
+            }, failure: failureHandler())
+    }
+    
+    func verifyCredentials() {
+        swifter.getAccountVerifyCredentials(true, skipStatus: false, success: { (myInfo) -> Void in
+            println(myInfo)
+            
+            let user = TwitterUser(jsonValue: myInfo!)
+            let accessToken = self.swifter.client.credential!.accessToken!
+            let account = TwitterAccount(user: user, key: accessToken.key, secret: accessToken.secret)
+            let data = NSKeyedArchiver.archivedDataWithRootObject(account)
+            self.defaults.setObject(data, forKey: "account")
+            
+            self.goToHomeController()
+        }, failure: failureHandler())
+    }
+    
+    func failureHandler() -> ((NSError) -> Void) {
+        return {
+            error in
+            
+            println("error")
+            println(error)
+        }
     }
 
 }

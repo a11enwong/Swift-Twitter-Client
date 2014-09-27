@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TweetCounterView" customModule="Twitter" customModuleProvider="target">
+            <connections>
+                <outlet property="characterCountLabel" destination="Q95-lZ-gsf" id="0N7-37-m1O"/>
+                <outlet property="view" destination="AtD-a7-WK5" id="553-RS-Xwm"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="AtD-a7-WK5">
+            <rect key="frame" x="0.0" y="0.0" width="165" height="56"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="3te-cd-56D">
+                    <rect key="frame" x="118" y="11" width="47" height="34"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <state key="normal" title="Tweet">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="onTweet:" destination="-1" eventType="touchUpInside" id="M6b-AX-g28"/>
+                    </connections>
+                </button>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="140" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Q95-lZ-gsf">
+                    <rect key="frame" x="79" y="17" width="31" height="22"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                    <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstAttribute="centerY" secondItem="3te-cd-56D" secondAttribute="centerY" id="FTr-9R-j11"/>
+                <constraint firstAttribute="trailing" secondItem="3te-cd-56D" secondAttribute="trailing" id="dtK-so-thB"/>
+                <constraint firstItem="3te-cd-56D" firstAttribute="leading" secondItem="Q95-lZ-gsf" secondAttribute="trailing" constant="8" id="eSF-Hb-3Yk"/>
+                <constraint firstAttribute="centerY" secondItem="Q95-lZ-gsf" secondAttribute="centerY" id="mz5-R3-h6i"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="219.5" y="151"/>
+        </view>
+    </objects>
+</document>

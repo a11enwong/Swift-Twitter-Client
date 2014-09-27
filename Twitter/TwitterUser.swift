@@ -9,7 +9,7 @@
 import Foundation
 import SwifteriOS
 
-struct TwitterUser {
+class TwitterUser: NSObject, NSCoding {
     var profileBannerUrl: String?
     var profileImageUrl: String?
     var name: String?
@@ -26,5 +26,45 @@ struct TwitterUser {
         tweetsCount = jsonValue["statuses_count"]?.integer
         followingCount = jsonValue["friends_count"]?.integer
         followersCount = jsonValue["followers_count"]?.integer
+    }
+    
+    required init(coder aDecoder: NSCoder) {
+        profileBannerUrl  = aDecoder.decodeObjectForKey("profileBannerUrl") as? String
+        profileImageUrl  = aDecoder.decodeObjectForKey("profileImageUrl") as? String
+        name  = aDecoder.decodeObjectForKey("name") as? String
+        screenName  = aDecoder.decodeObjectForKey("screenName") as? String
+        tweetsCount  = aDecoder.decodeObjectForKey("tweetsCount") as? Int
+        followingCount  = aDecoder.decodeObjectForKey("followingCount") as? Int
+        followersCount  = aDecoder.decodeObjectForKey("followersCount") as? Int
+    }
+    
+    func encodeWithCoder(aCoder: NSCoder) {
+        if let profileBannerUrl = self.profileBannerUrl{
+            aCoder.encodeObject(profileBannerUrl, forKey: "profileBannerUrl")
+        }
+        
+        if let profileImageUrl = self.profileImageUrl{
+            aCoder.encodeObject(profileImageUrl, forKey: "profileImageUrl")
+        }
+        
+        if let name = self.name{
+            aCoder.encodeObject(name, forKey: "name")
+        }
+        
+        if let screenName = self.screenName{
+            aCoder.encodeObject(screenName, forKey: "screenName")
+        }
+        
+        if let tweetsCount = self.tweetsCount{
+            aCoder.encodeObject(tweetsCount, forKey: "tweetsCount")
+        }
+        
+        if let followingCount = self.followingCount{
+            aCoder.encodeObject(followingCount, forKey: "followingCount")
+        }
+        
+        if let followersCount = self.followersCount{
+            aCoder.encodeObject(followersCount, forKey: "followersCount")
+        }
     }
 }

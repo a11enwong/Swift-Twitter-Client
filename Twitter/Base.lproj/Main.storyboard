@@ -5,10 +5,10 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Home View Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="vXZ-lx-hvc" customClass="ViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="HomeViewController" id="vXZ-lx-hvc" customClass="HomeViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -30,14 +30,75 @@
                             <constraint firstAttribute="trailingMargin" secondItem="5LP-r1-Wj7" secondAttribute="trailing" constant="-16" id="kcH-PJ-Cpo"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="Iy1-Zb-HNx"/>
+                    <navigationItem key="navigationItem" id="Iy1-Zb-HNx">
+                        <barButtonItem key="rightBarButtonItem" image="compose" id="Sxg-8L-fG6">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            <connections>
+                                <segue destination="tfZ-Yo-0Ba" kind="presentation" id="Hw3-NC-5g8"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="tableView" destination="5LP-r1-Wj7" id="q3T-y2-pe5"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2575" y="136"/>
+            <point key="canvasLocation" x="1019" y="419"/>
+        </scene>
+        <!--Compose View Controller-->
+        <scene sceneID="nht-gB-sbh">
+            <objects>
+                <viewController storyboardIdentifier="NewStatusViewController" id="emC-Lf-nJu" customClass="ComposeViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="JRB-ea-i54"/>
+                        <viewControllerLayoutGuide type="bottom" id="C0Y-o0-ad2"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="mQ5-xT-m6g">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ROl-pz-Lq4" customClass="UserHeaderView" customModule="Twitter" customModuleProvider="target">
+                                <rect key="frame" x="11" y="70" width="578" height="60"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="BAd-iT-MdF"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ztI-wL-Q36">
+                                <rect key="frame" x="11" y="135" width="578" height="445"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="20"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="C0Y-o0-ad2" firstAttribute="top" secondItem="ztI-wL-Q36" secondAttribute="bottom" constant="20" id="8k9-dx-78J"/>
+                            <constraint firstItem="ROl-pz-Lq4" firstAttribute="top" secondItem="mQ5-xT-m6g" secondAttribute="topMargin" constant="70" id="Brh-pS-Ltr"/>
+                            <constraint firstItem="ztI-wL-Q36" firstAttribute="top" secondItem="ROl-pz-Lq4" secondAttribute="bottom" constant="5" id="PI5-B8-fya"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ztI-wL-Q36" secondAttribute="trailing" constant="-5" id="Rpf-Vc-Jd9"/>
+                            <constraint firstItem="ztI-wL-Q36" firstAttribute="leading" secondItem="mQ5-xT-m6g" secondAttribute="leadingMargin" constant="-5" id="VZ5-af-lix"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="ROl-pz-Lq4" secondAttribute="trailing" constant="-5" id="cdS-RJ-JGN"/>
+                            <constraint firstItem="ROl-pz-Lq4" firstAttribute="leading" secondItem="mQ5-xT-m6g" secondAttribute="leadingMargin" constant="-5" id="yzp-pJ-pyo"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="WhF-my-Qbk">
+                        <barButtonItem key="leftBarButtonItem" title="Cancel" id="F2s-lf-30n">
+                            <connections>
+                                <action selector="onCancel:" destination="emC-Lf-nJu" id="5vr-9y-jXG"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="bottomStatusConstraint" destination="8k9-dx-78J" id="I5u-lT-wbf"/>
+                        <outlet property="statusTextView" destination="ztI-wL-Q36" id="pm3-zE-OqE"/>
+                        <outlet property="userHeaderView" destination="ROl-pz-Lq4" id="WpM-0t-x48"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="jCR-8d-rOy" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1825" y="1152"/>
         </scene>
         <!--Login View Controller-->
         <scene sceneID="RXt-JV-F9f">
@@ -75,7 +136,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="A6W-Mc-4zr" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="938" y="187"/>
+            <point key="canvasLocation" x="240" y="-211"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="ZSD-bV-GPZ">
@@ -93,10 +154,29 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wpM-zU-JJB" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1763" y="136"/>
+            <point key="canvasLocation" x="235" y="470"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="1Mq-gS-oBB">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tfZ-Yo-0Ba" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="NA0-xM-lBO">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="emC-Lf-nJu" kind="relationship" relationship="rootViewController" id="MnK-YB-SpG"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="1aX-bZ-mrQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1013" y="1152"/>
         </scene>
     </scenes>
     <resources>
         <image name="button_login" width="290" height="62"/>
+        <image name="compose" width="32" height="32"/>
     </resources>
 </document>
