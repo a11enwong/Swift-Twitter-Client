@@ -19,17 +19,14 @@ class LoginViewController: UIViewController {
         super.init(coder: aDecoder)
     }
     
-    override func viewDidLoad() {
-//        let token = "432287527-XFw7JdtXzeoeU3AXewydJwvRmcKfpFJ5relCFM1V"
-//        let secret = "OudiZDUOhuljAV1n4Y3JMdbL8jrXuHFZSIM2vCnMG7sL3"
-        
+    
+    override func viewDidAppear(animated: Bool) {
         if let key = defaults.objectForKey("key") as? String {
             let secret = defaults.objectForKey("secret") as String
             let credentialToken = SwifterCredential.OAuthAccessToken(key: key, secret: secret)
             swifter.client.credential = SwifterCredential(accessToken: credentialToken)
             goToHomeController()
         }
-
     }
     
     
@@ -72,12 +69,12 @@ class LoginViewController: UIViewController {
             println(error)
         }
         
-        swifter.getStatusesHomeTimelineWithCount(20, sinceID: nil, maxID: nil, trimUser: true, contributorDetails: false, includeEntities: true, success: {
-            (statuses: [JSONValue]?) in
+        println(swifter.client.credential?.accessToken?.key)
+        swifter.getStatusesHomeTimelineWithCount(20, sinceID: nil, maxID: nil, trimUser: true,
+            contributorDetails: false, includeEntities: true, success: {
+                (statuses: [JSONValue]?) in
                 println("fetched successfully")
-            
             }, failure: failureHandler)
-        
     }
 
 }

@@ -7,10 +7,14 @@
 //
 
 import UIKit
+import SwifteriOS
 
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    
+    var swifter = SwifterApi.sharedInstance
+    var statuses = [TwitterStatus]()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -20,7 +24,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 100.0
 
-        
+        fetchTwitterHomeStream()
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,11 +33,13 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return statuses.count
     }
     
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = reusableTableCell("TweetTableViewCell") as TweetTableViewCell
+        
+        cell.loadStatus(statuses[indexPath.row])
         
         return cell
     }
@@ -45,7 +51,29 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             possibleCell = topLevelObjects.first as UITableViewCell?
         }
         
+        
         return possibleCell!
+    }
+    
+    func fetchTwitterHomeStream() {
+        let failureHandler: ((NSError) -> Void) = {
+            error in
+            println("error fetching tweets")
+            println(error)
+        }
+        
+        swifter.getStatusesHomeTimelineWithCount(20, sinceID: nil, maxID: nil, trimUser: false,
+            contributorDetails: true, includeEntities: true, success: {
+            (statuses: [JSONValue]?) in
+                println("fetched successfully")
+                
+                self.statuses = []
+                for status in statuses! {
+                   self.statuses.append(TwitterStatus(jsonValue: status))
+                }
+                
+                self.tableView.reloadData()
+            }, failure: failureHandler)
     }
 
 }

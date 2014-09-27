@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		9526FA9B19D520D900AA74BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526FA9A19D520D900AA74BF /* LoginViewController.swift */; };
 		9526FAFB19D65F2700AA74BF /* SwifterApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526FAFA19D65F2700AA74BF /* SwifterApi.swift */; };
+		9526FB0419D6674100AA74BF /* TwitterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526FB0319D6674100AA74BF /* TwitterStatus.swift */; };
+		9526FB0619D66CA800AA74BF /* TwitterUser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526FB0519D66CA800AA74BF /* TwitterUser.swift */; };
 		95F79ECF19D3D8FD00C5EA1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F79ECE19D3D8FD00C5EA1D /* AppDelegate.swift */; };
 		95F79ED119D3D8FD00C5EA1D /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F79ED019D3D8FD00C5EA1D /* ViewController.swift */; };
 		95F79ED419D3D8FD00C5EA1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95F79ED219D3D8FD00C5EA1D /* Main.storyboard */; };
@@ -75,6 +77,8 @@
 		9526FA8519D5200300AA74BF /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = "../Swifter-master/Swifter.xcodeproj"; sourceTree = "<group>"; };
 		9526FA9A19D520D900AA74BF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9526FAFA19D65F2700AA74BF /* SwifterApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterApi.swift; sourceTree = "<group>"; };
+		9526FB0319D6674100AA74BF /* TwitterStatus.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterStatus.swift; sourceTree = "<group>"; };
+		9526FB0519D66CA800AA74BF /* TwitterUser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterUser.swift; sourceTree = "<group>"; };
 		95F79EC919D3D8FD00C5EA1D /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F79ECD19D3D8FD00C5EA1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95F79ECE19D3D8FD00C5EA1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -136,6 +140,15 @@
 			name = api;
 			sourceTree = "<group>";
 		};
+		9526FAFE19D6672A00AA74BF /* models */ = {
+			isa = PBXGroup;
+			children = (
+				9526FB0319D6674100AA74BF /* TwitterStatus.swift */,
+				9526FB0519D66CA800AA74BF /* TwitterUser.swift */,
+			);
+			name = models;
+			sourceTree = "<group>";
+		};
 		95F79EC019D3D8FD00C5EA1D = {
 			isa = PBXGroup;
 			children = (
@@ -158,6 +171,7 @@
 		95F79ECB19D3D8FD00C5EA1D /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				9526FAFE19D6672A00AA74BF /* models */,
 				9526FAFC19D65FF200AA74BF /* api */,
 				9526FA9919D5206300AA74BF /* controllers */,
 				95F79EEE19D3DA4800C5EA1D /* views */,
@@ -355,6 +369,8 @@
 				95F79ECF19D3D8FD00C5EA1D /* AppDelegate.swift in Sources */,
 				95F79EF119D3DAAE00C5EA1D /* TweetTableViewCell.swift in Sources */,
 				9526FAFB19D65F2700AA74BF /* SwifterApi.swift in Sources */,
+				9526FB0419D6674100AA74BF /* TwitterStatus.swift in Sources */,
+				9526FB0619D66CA800AA74BF /* TwitterUser.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

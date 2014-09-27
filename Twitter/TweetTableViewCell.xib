@@ -62,6 +62,13 @@
                     <constraint firstAttribute="bottomMargin" secondItem="Sas-Mg-6F6" secondAttribute="bottom" priority="750" constant="4" id="yTf-7L-vof"/>
                 </constraints>
             </tableViewCellContentView>
+            <connections>
+                <outlet property="nameLabel" destination="7Us-Ij-dTj" id="Icp-s2-LWT"/>
+                <outlet property="screenNameLabel" destination="m7G-Ss-bmy" id="lAc-M7-Pkf"/>
+                <outlet property="thumnailImageView" destination="Dap-Jf-A62" id="00I-PG-8rX"/>
+                <outlet property="timeLagel" destination="Xkw-BW-C46" id="pg7-F9-bBZ"/>
+                <outlet property="tweetTextLabel" destination="Sas-Mg-6F6" id="1YX-5O-577"/>
+            </connections>
             <point key="canvasLocation" x="360.5" y="234"/>
         </tableViewCell>
     </objects>
