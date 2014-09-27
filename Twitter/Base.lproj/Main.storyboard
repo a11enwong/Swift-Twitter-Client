@@ -42,7 +42,7 @@
         <!--Login View Controller-->
         <scene sceneID="RXt-JV-F9f">
             <objects>
-                <viewController id="1Df-Db-If9" customClass="LoginViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="LoginViewController" id="1Df-Db-If9" customClass="LoginViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="KyG-Wz-Iv6"/>
                         <viewControllerLayoutGuide type="bottom" id="tX8-rE-Xip"/>

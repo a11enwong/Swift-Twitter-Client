@@ -12,6 +12,7 @@ import SwifteriOS
 class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
 
     @IBOutlet weak var tableView: UITableView!
+    private var defaults = NSUserDefaults.standardUserDefaults()
     
     var swifter = SwifterApi.sharedInstance
     var statuses = [TwitterStatus]()
@@ -89,7 +90,12 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     }
     
     func onSignOut() {
-        println("sign out")
+        defaults.setObject(nil, forKey: "key")
+        defaults.setObject(nil, forKey: "secret")
+        swifter.client.credential = nil
+        
+        let loginViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
+        presentViewController(loginViewController, animated: true, completion: nil)
     }
     
     func onNewTweet() {
