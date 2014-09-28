@@ -46,6 +46,55 @@
             </objects>
             <point key="canvasLocation" x="1019" y="419"/>
         </scene>
+        <!--Status Detail View Controller-->
+        <scene sceneID="Mai-FD-kWK">
+            <objects>
+                <viewController storyboardIdentifier="StatusDetailViewController" id="elS-gR-z6G" customClass="StatusDetailViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="IJ8-yL-Nh2"/>
+                        <viewControllerLayoutGuide type="bottom" id="tuZ-8w-OAG"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="b1z-lj-MAB">
+                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DaQ-CR-cUa" customClass="UserHeaderView" customModule="Twitter" customModuleProvider="target">
+                                <rect key="frame" x="16" y="25" width="568" height="60"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="60" id="OFU-U5-vsr"/>
+                                </constraints>
+                            </view>
+                            <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" editable="NO" text="Lorem ipsum dolor sit er elit lamet, consectetaur cillium adipisicing pecu, sed do " translatesAutoresizingMaskIntoConstraints="NO" id="l2A-VZ-xy7">
+                                <rect key="frame" x="16" y="93" width="568" height="64"/>
+                                <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="64" id="BBt-m7-pXV"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                <textInputTraits key="textInputTraits" autocapitalizationType="sentences"/>
+                            </textView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="l2A-VZ-xy7" firstAttribute="leading" secondItem="b1z-lj-MAB" secondAttribute="leadingMargin" id="2F9-mN-SvE"/>
+                            <constraint firstItem="DaQ-CR-cUa" firstAttribute="trailing" secondItem="b1z-lj-MAB" secondAttribute="trailingMargin" id="2aE-5X-2lA"/>
+                            <constraint firstItem="l2A-VZ-xy7" firstAttribute="top" secondItem="DaQ-CR-cUa" secondAttribute="bottom" constant="8" id="7sW-hl-0CX"/>
+                            <constraint firstItem="DaQ-CR-cUa" firstAttribute="leading" secondItem="b1z-lj-MAB" secondAttribute="leadingMargin" id="Wbq-sf-SMF"/>
+                            <constraint firstItem="DaQ-CR-cUa" firstAttribute="top" secondItem="IJ8-yL-Nh2" secondAttribute="bottom" constant="5" id="f3u-IU-Nnk"/>
+                            <constraint firstItem="l2A-VZ-xy7" firstAttribute="trailing" secondItem="b1z-lj-MAB" secondAttribute="trailingMargin" id="yBX-i2-YBh"/>
+                        </constraints>
+                    </view>
+                    <connections>
+                        <outlet property="statusTextView" destination="l2A-VZ-xy7" id="XlU-XU-YnD"/>
+                        <outlet property="textHeightConstraint" destination="BBt-m7-pXV" id="eCY-hY-OGT"/>
+                        <outlet property="userHeaderView" destination="DaQ-CR-cUa" id="TrY-3S-sQW"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="sCl-ew-9fE" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1823" y="421"/>
+        </scene>
         <!--Compose View Controller-->
         <scene sceneID="nht-gB-sbh">
             <objects>

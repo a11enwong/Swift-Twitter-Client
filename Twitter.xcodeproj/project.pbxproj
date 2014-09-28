@@ -10,6 +10,7 @@
 		6F235E9AB84F4B858E75D61F /* libPods.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8EC5433E6D4A482BBF53BEB3 /* libPods.a */; };
 		950F4D2619D77666007D6E22 /* TweetCounterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F4D2519D77666007D6E22 /* TweetCounterView.swift */; };
 		950F4D2C19D776A9007D6E22 /* TweetCounterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 950F4D2B19D776A9007D6E22 /* TweetCounterView.xib */; };
+		950F4D2F19D799FC007D6E22 /* StatusDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 950F4D2E19D799FC007D6E22 /* StatusDetailViewController.swift */; };
 		9526FA9B19D520D900AA74BF /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526FA9A19D520D900AA74BF /* LoginViewController.swift */; };
 		9526FAFB19D65F2700AA74BF /* SwifterApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526FAFA19D65F2700AA74BF /* SwifterApi.swift */; };
 		9526FB0419D6674100AA74BF /* TwitterStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526FB0319D6674100AA74BF /* TwitterStatus.swift */; };
@@ -86,6 +87,7 @@
 		8EC5433E6D4A482BBF53BEB3 /* libPods.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = libPods.a; sourceTree = BUILT_PRODUCTS_DIR; };
 		950F4D2519D77666007D6E22 /* TweetCounterView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TweetCounterView.swift; sourceTree = "<group>"; };
 		950F4D2B19D776A9007D6E22 /* TweetCounterView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = TweetCounterView.xib; sourceTree = "<group>"; };
+		950F4D2E19D799FC007D6E22 /* StatusDetailViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StatusDetailViewController.swift; sourceTree = "<group>"; };
 		9526FA8519D5200300AA74BF /* Swifter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = Swifter.xcodeproj; path = "../Swifter-master/Swifter.xcodeproj"; sourceTree = "<group>"; };
 		9526FA9A19D520D900AA74BF /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		9526FAFA19D65F2700AA74BF /* SwifterApi.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SwifterApi.swift; sourceTree = "<group>"; };
@@ -148,6 +150,7 @@
 				95F79ED019D3D8FD00C5EA1D /* HomeViewController.swift */,
 				9526FA9A19D520D900AA74BF /* LoginViewController.swift */,
 				9526FB1719D7426000AA74BF /* ComposeViewController.swift */,
+				950F4D2E19D799FC007D6E22 /* StatusDetailViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -449,6 +452,7 @@
 				9526FA9B19D520D900AA74BF /* LoginViewController.swift in Sources */,
 				95F79ED119D3D8FD00C5EA1D /* HomeViewController.swift in Sources */,
 				95F79ECF19D3D8FD00C5EA1D /* AppDelegate.swift in Sources */,
+				950F4D2F19D799FC007D6E22 /* StatusDetailViewController.swift in Sources */,
 				9526FB1219D6852600AA74BF /* ColorPalette.swift in Sources */,
 				95F79EF119D3DAAE00C5EA1D /* TweetTableViewCell.swift in Sources */,
 				9526FB1819D7426000AA74BF /* ComposeViewController.swift in Sources */,
