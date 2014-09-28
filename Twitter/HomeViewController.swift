@@ -61,6 +61,15 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         return cell
     }
     
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        let status = statuses[indexPath.row]
+        
+        let controller = self.storyboard!.instantiateViewControllerWithIdentifier("StatusDetailViewController") as StatusDetailViewController
+        controller.status = status
+        
+        navigationController?.pushViewController(controller, animated: true)
+    }
+    
     func reusableTableCell(identifier: String) -> UITableViewCell {
         var possibleCell = tableView.dequeueReusableCellWithIdentifier(identifier) as UITableViewCell?
         if possibleCell == nil {
@@ -84,11 +93,12 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             contributorDetails: true, includeEntities: true, success: {
             (statuses: [JSONValue]?) in
                 println("fetched successfully")
+                println(statuses![3])
                 self.refreshControl.endRefreshing()
                 
                 self.statuses = []
                 for status in statuses! {
-                   self.statuses.append(TwitterStatus(jsonValue: status))
+                   self.statuses.append(TwitterStatus(jsonValue: status.object!))
                 }
                 
                 self.tableView.reloadData()

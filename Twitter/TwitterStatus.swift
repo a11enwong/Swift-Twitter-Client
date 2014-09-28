@@ -15,24 +15,40 @@ class TwitterStatus: NSObject, NSCoding {
     var createdAt: NSDate?
     var retweetCount: Int?
     var favoriteCount: Int?
-    var retweetedTweet: Bool?
+    var retweetedTweet: Bool {
+        get {
+            return retweetedStatus != nil
+        }
+    }
     var user: TwitterUser?
+    var retweetedStatus: TwitterStatus?
+    var rootStatus: TwitterStatus {
+        get {
+            return retweetedTweet ? retweetedStatus! : self
+        }
+    }
 
     
-    init(jsonValue: JSONValue) {
-        id = jsonValue["id"].double
-        text = jsonValue["text"].string
+    init(jsonValue: Dictionary<String, JSONValue>) {
+        id = jsonValue["id"]?.double
+        text = jsonValue["text"]?.string
         
         var dateFormater = NSDateFormatter()
         dateFormater.locale = NSLocale(localeIdentifier: "en_US_POSIX")
         dateFormater.dateFormat = "eee MMM dd HH:mm:ss ZZZZ yyyy"
-        createdAt = dateFormater.dateFromString(jsonValue["created_at"].string!)
         
-        retweetCount = jsonValue["retweeted_count"].integer
-        favoriteCount = jsonValue["favorite_count"].integer
-        retweetedTweet = jsonValue["retweeted"].bool
+        if let date = jsonValue["created_at"]?.string {
+            createdAt = dateFormater.dateFromString(date)
+        }
         
-        user = TwitterUser(jsonValue: jsonValue["user"].object! )
+        retweetCount = jsonValue["retweeted_count"]?.integer
+        favoriteCount = jsonValue["favorite_count"]?.integer
+        
+        user = TwitterUser(jsonValue: jsonValue["user"]!.object! )
+        
+        if let retweetedStatusJson = jsonValue["retweeted_status"]?.object {
+            retweetedStatus = TwitterStatus(jsonValue: retweetedStatusJson)
+        }
     }
     
     init(text: String, user: TwitterUser) {
@@ -40,7 +56,6 @@ class TwitterStatus: NSObject, NSCoding {
         self.user = user
         self.createdAt = NSDate()
         self.favoriteCount = 0
-        self.retweetedTweet = 0
         self.retweetCount = 0
     }
     
@@ -50,7 +65,7 @@ class TwitterStatus: NSObject, NSCoding {
         createdAt  = aDecoder.decodeObjectForKey("name") as? NSDate
         retweetCount  = aDecoder.decodeObjectForKey("screenName") as? Int
         favoriteCount  = aDecoder.decodeObjectForKey("tweetsCount") as? Int
-        retweetedTweet = aDecoder.decodeObjectForKey("retweetedTweet") as? Bool
+        retweetedStatus = aDecoder.decodeObjectForKey("retweetedTweet") as? TwitterStatus
         user  = aDecoder.decodeObjectForKey("followingCount") as? TwitterUser
     }
     
@@ -71,8 +86,8 @@ class TwitterStatus: NSObject, NSCoding {
             aCoder.encodeObject(retweetCount, forKey: "retweetCount")
         }
         
-        if let retweetedTweet = self.retweetedTweet{
-            aCoder.encodeObject(retweetedTweet, forKey: "retweetedTweet")
+        if let retweetedStatus = self.retweetedStatus{
+            aCoder.encodeObject(retweetedStatus, forKey: "retweetedStatus")
         }
         
         if let user = self.user{

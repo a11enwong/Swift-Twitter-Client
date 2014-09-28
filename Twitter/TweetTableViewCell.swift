@@ -16,6 +16,9 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var timeLagel: UILabel!
     @IBOutlet weak var tweetTextLabel: UILabel!
     
+    @IBOutlet weak var retweetedView: UIView!
+    @IBOutlet weak var retweetViewHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var retweetedLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -23,17 +26,27 @@ class TweetTableViewCell: UITableViewCell {
     }
 
     func loadStatus(status: TwitterStatus) {
-        nameLabel.text = status.user?.name
-        screenNameLabel.text = "@\(status.user!.screenName!)"
-        tweetTextLabel.text = status.text
+        let rootStatus = status.rootStatus
+        
+        nameLabel.text = rootStatus.user?.name
+        screenNameLabel.text = "@\(rootStatus.user!.screenName!)"
+        tweetTextLabel.text = rootStatus.text
         
         var timeIntervalFormater = TTTTimeIntervalFormatter()
         timeLagel.text = timeIntervalFormater.stringForTimeIntervalFromDate(
-            NSDate(), toDate: status.createdAt!)
+            NSDate(), toDate: rootStatus.createdAt!)
         
         thumnailImageView.layer.cornerRadius = CGFloat(5)
         thumnailImageView.layer.masksToBounds = true
-        thumnailImageView.setImageWithURL(NSURL(string: status.user!.profileImageUrl!))
+        thumnailImageView.setImageWithURL(NSURL(string: rootStatus.user!.profileImageUrl!))
+        
+        if status.retweetedTweet {
+            let name = status.user!.name!
+            retweetedLabel.text = "\(name) retweeted"
+        } else {
+            retweetViewHeightConstraint.constant = 0
+            retweetedView.hidden = true
+        }
     }
     
 }
