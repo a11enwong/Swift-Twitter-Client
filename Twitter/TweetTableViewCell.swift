@@ -8,7 +8,7 @@
 
 import UIKit
 
-class TweetTableViewCell: UITableViewCell {
+class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
 
     @IBOutlet weak var thumnailImageView: UIImageView!
     @IBOutlet weak var nameLabel: UILabel!
@@ -19,6 +19,7 @@ class TweetTableViewCell: UITableViewCell {
     @IBOutlet weak var retweetedView: UIView!
     @IBOutlet weak var retweetViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var retweetedLabel: UILabel!
+    @IBOutlet weak var buttonsView: TweetButtonsView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -47,6 +48,17 @@ class TweetTableViewCell: UITableViewCell {
             retweetViewHeightConstraint.constant = 0
             retweetedView.hidden = true
         }
+        
+        buttonsView.delegate = self
+        buttonsView.showStatus(status)
+    }
+    
+    func onReplyTab() {
+        println("retweet")
+    }
+    
+    func onRetweetTab() {
+        println("retweet")
     }
     
 }

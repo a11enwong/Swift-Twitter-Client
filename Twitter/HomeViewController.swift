@@ -17,6 +17,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
     var swifter = SwifterApi.sharedInstance
     var statuses = [TwitterStatus]()
     var refreshControl: UIRefreshControl = UIRefreshControl()
+    var tweetActionsObserver: TweetActionsObserver = TweetActionsObserver.sharedInstance
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,6 +43,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         fetchTwitterHomeStream()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onStatusCreated:", name: "statusCreated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onStatusUpdated:", name: "statusUpdated", object: nil)
     }
 
     override func didReceiveMemoryWarning() {
@@ -93,7 +95,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
             contributorDetails: true, includeEntities: true, success: {
             (statuses: [JSONValue]?) in
                 println("fetched successfully")
-                println(statuses![3])
+                println(statuses!.first)
                 self.refreshControl.endRefreshing()
                 
                 self.statuses = []
@@ -124,6 +126,19 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.reloadData()
     }
     
-
+    func onStatusUpdated(notification: NSNotification) {
+        println(notification.userInfo)
+        
+        let updatedStatus = notification.userInfo!["status"] as TwitterStatus
+        
+        for (i, status) in enumerate(statuses) {
+            if status.id! == updatedStatus.id! {
+                println("updating status \(i) to \(updatedStatus.favorited!)")
+                statuses[i...i] = [updatedStatus]
+            }
+        }
+        
+        tableView.reloadData()
+    }
 }
 

@@ -27,6 +27,8 @@ class TwitterStatus: NSObject, NSCoding {
             return retweetedTweet ? retweetedStatus! : self
         }
     }
+    var favorited: Bool?
+    var retweeted: Bool?
 
     
     init(jsonValue: Dictionary<String, JSONValue>) {
@@ -45,6 +47,9 @@ class TwitterStatus: NSObject, NSCoding {
         favoriteCount = jsonValue["favorite_count"]?.integer
         
         user = TwitterUser(jsonValue: jsonValue["user"]!.object! )
+        
+        favorited = (jsonValue["favorited"]?.double ?? 0.0) == 1.0
+        retweeted = (jsonValue["retweeted"]?.bool ?? 0.0) == 1.0
         
         if let retweetedStatusJson = jsonValue["retweeted_status"]?.object {
             retweetedStatus = TwitterStatus(jsonValue: retweetedStatusJson)
@@ -67,6 +72,8 @@ class TwitterStatus: NSObject, NSCoding {
         favoriteCount  = aDecoder.decodeObjectForKey("tweetsCount") as? Int
         retweetedStatus = aDecoder.decodeObjectForKey("retweetedTweet") as? TwitterStatus
         user  = aDecoder.decodeObjectForKey("followingCount") as? TwitterUser
+        favorited = aDecoder.decodeObjectForKey("favorited") as? Bool
+        retweeted = aDecoder.decodeObjectForKey("retweeted") as? Bool
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -92,6 +99,14 @@ class TwitterStatus: NSObject, NSCoding {
         
         if let user = self.user{
             aCoder.encodeObject(user, forKey: "user")
+        }
+        
+        if let favorited = self.favorited {
+            aCoder.encodeObject(favorited, forKey: "favorited")
+        }
+        
+        if let retweeted = self.retweeted {
+            aCoder.encodeObject(retweeted, forKey: "retweeted")
         }
         
     }
