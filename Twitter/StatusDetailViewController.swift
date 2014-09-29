@@ -30,6 +30,10 @@ class StatusDetailViewController: UIViewController {
         navigationItem.title = "Tweet"
         navigationController?.navigationBar.tintColor = ColorPalette.White.get()
         
+        self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reply",
+            style: UIBarButtonItemStyle.Plain, target: self, action: "onReply")
+        self.navigationItem.rightBarButtonItem?.tintColor = ColorPalette.White.get()
+        
     }
     
     func showUI() {
@@ -70,5 +74,13 @@ class StatusDetailViewController: UIViewController {
         println(notification.userInfo)
         status = notification.userInfo!["status"] as? TwitterStatus
         showUI()
+    }
+    
+    func onReply() {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("ComposeNavigationController") as UINavigationController
+        let controller = navigationController.viewControllers.first as ComposeViewController
+        controller.status = status
+        
+        presentViewController(navigationController, animated: true, completion: nil)
     }
 }
