@@ -14,6 +14,8 @@ class StatusDetailViewController: UIViewController {
     @IBOutlet weak var statusTextView: UITextView!
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var tweetActionsView: TweetButtonsView!
+    @IBOutlet weak var retweetsCount: UILabel!
+    @IBOutlet weak var favoritesCount: UILabel!
     
     var tweetActionsObserver: TweetActionsObserver = TweetActionsObserver.sharedInstance
     
@@ -25,6 +27,9 @@ class StatusDetailViewController: UIViewController {
         showUI()
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onStatusUpdated:", name: "statusUpdated", object: nil)
+        navigationItem.title = "Tweet"
+        navigationController?.navigationBar.tintColor = ColorPalette.White.get()
+        
     }
     
     func showUI() {
@@ -32,6 +37,8 @@ class StatusDetailViewController: UIViewController {
         textHeightConstraint.constant = self.heightForTextView() + 25.0
         tweetActionsView.showStatus(status!)
         userHeaderView.loadUser(status!.rootStatus.user!)
+        retweetsCount.text = "\(status!.rootStatus.retweetCount!)"
+        favoritesCount.text = "\(status!.rootStatus.favoriteCount!)"
     }
 
     override func didReceiveMemoryWarning() {

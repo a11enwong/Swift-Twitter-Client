@@ -20,16 +20,6 @@ class LoginViewController: UIViewController {
     }
     
     
-    override func viewDidAppear(animated: Bool) {
-        if let data = defaults.objectForKey("account") as NSData? {
-            let account = NSKeyedUnarchiver.unarchiveObjectWithData(data) as TwitterAccount
-            let credentialToken = SwifterCredential.OAuthAccessToken(key: account.key, secret: account.secret)
-            swifter.client.credential = SwifterCredential(accessToken: credentialToken)
-            goToHomeController()
-        }
-    }
-    
-    
     @IBAction func didTouchUpInsideLoginButton(sender: AnyObject) {
         swifter.client.credential = nil
         
@@ -40,7 +30,7 @@ class LoginViewController: UIViewController {
             println(error)
         }
         
-
+        
         swifter.authorizeWithCallbackURL(NSURL(string: "codepathtwitter://success"), success: {
             accessToken, response in
                 println("logged with tweeter")

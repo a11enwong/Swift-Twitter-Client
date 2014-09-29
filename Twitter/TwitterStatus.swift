@@ -43,7 +43,7 @@ class TwitterStatus: NSObject, NSCoding {
             createdAt = dateFormater.dateFromString(date)
         }
         
-        retweetCount = jsonValue["retweeted_count"]?.integer
+        retweetCount = jsonValue["retweet_count"]?.integer
         favoriteCount = jsonValue["favorite_count"]?.integer
         
         user = TwitterUser(jsonValue: jsonValue["user"]!.object! )
