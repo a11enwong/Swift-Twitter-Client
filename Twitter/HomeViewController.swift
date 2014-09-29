@@ -15,10 +15,13 @@ class HomeViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var tableView: UITableView!
     private var defaults = NSUserDefaults.standardUserDefaults()
     
+    let TWEETS_PER_LOAD = 18
     var swifter = SwifterApi.sharedInstance
     var statuses = [TwitterStatus]()
     var refreshControl: UIRefreshControl = UIRefreshControl()
     var tweetActionsObserver: TweetActionsObserver = TweetActionsObserver.sharedInstance
+    var fetchingData = false
+    var endResults = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +65,10 @@ class HomeViewController: UIViewController, UITableViewDataSource,
         cell.loadStatus(statuses[indexPath.row])
         cell.delegate = self
         
+        if statuses.count == (indexPath.row + 1) && !endResults && !fetchingData {
+            fetchTwitterHomeStream(replace: false)
+        }
+        
         return cell
     }
     
@@ -85,25 +92,39 @@ class HomeViewController: UIViewController, UITableViewDataSource,
         return possibleCell!
     }
     
-    func fetchTwitterHomeStream() {
+    func fetchTwitterHomeStream(replace: Bool = true) {
+        fetchingData = true
+        
         let failureHandler: ((NSError) -> Void) = {
             error in
             println("error fetching tweets")
             println(error)
             self.refreshControl.endRefreshing()
+            self.fetchingData = false
+            self.tableView.tableFooterView = nil
         }
         
-        swifter.getStatusesHomeTimelineWithCount(20, sinceID: nil, maxID: nil, trimUser: false,
+        let sinceID = replace ? nil : statuses.last?.id
+        
+        if !replace {
+            self.showFooterSpinner()
+        }
+        
+        swifter.getStatusesHomeTimelineWithCount(TWEETS_PER_LOAD, sinceID: sinceID, maxID: nil, trimUser: false,
             contributorDetails: true, includeEntities: true, success: {
             (statuses: [JSONValue]?) in
-                println("fetched successfully")
-                println(statuses!.first)
+                println("\(statuses!.count) results fetched successfully")
                 self.refreshControl.endRefreshing()
                 
                 self.statuses = []
                 for status in statuses! {
                    self.statuses.append(TwitterStatus(jsonValue: status.object!))
                 }
+                
+                self.endResults = statuses!.count < self.TWEETS_PER_LOAD
+                
+                self.fetchingData = false
+                self.tableView.tableFooterView = nil
                 
                 self.tableView.reloadData()
             }, failure: failureHandler)
@@ -149,6 +170,13 @@ class HomeViewController: UIViewController, UITableViewDataSource,
         controller.status = status
         
         presentViewController(navigationController, animated: true, completion: nil)
+    }
+    
+    func showFooterSpinner() {
+        let spinner = UIActivityIndicatorView(frame: CGRectMake(0, 0, 320, 44))
+        spinner.startAnimating()
+        spinner.color = ColorPalette.Blue.get()
+        tableView.tableFooterView = spinner
     }
 }
 
