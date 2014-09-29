@@ -49,7 +49,7 @@ class TwitterStatus: NSObject, NSCoding {
         user = TwitterUser(jsonValue: jsonValue["user"]!.object! )
         
         favorited = (jsonValue["favorited"]?.double ?? 0.0) == 1.0
-        retweeted = (jsonValue["retweeted"]?.bool ?? 0.0) == 1.0
+        retweeted = (jsonValue["retweeted"]?.double ?? 0.0) == 1.0
         
         if let retweetedStatusJson = jsonValue["retweeted_status"]?.object {
             retweetedStatus = TwitterStatus(jsonValue: retweetedStatusJson)

@@ -34,9 +34,21 @@ class TweetActionsObserver: NSObject {
         if !(status.favorited ?? false) {
             status.favorited = true
             status.favoriteCount = (status.favoriteCount ?? 0 ) + 1
+            
+            swifter.postCreateFavoriteWithID(status.id!, includeEntities: false, success: { (status) -> Void in
+                println("favorited success")
+                }) { (error) -> Void in
+                    println(error)
+            }
         } else {
             status.favorited = false
             status.favoriteCount = (status.favoriteCount ?? 1 ) - 1
+            
+            swifter.postDestroyFavoriteWithID(status.id!, includeEntities: false, success: { (status) -> Void in
+                println("favorited success")
+                }) { (error) -> Void in
+                    println(error)
+            }
         }
         
         sendUpdatedStatusNotification(status)
@@ -48,6 +60,12 @@ class TweetActionsObserver: NSObject {
         if !(status.retweeted ?? false) {
             status.retweeted = true
             status.retweetCount = (status.retweetCount ?? 0 ) + 1
+            
+            swifter.postStatusRetweetWithID(status.id!, trimUser: true, success: { (status) -> Void in
+                println("retweeted success")
+                }) { (error) -> Void in
+                    println(error)
+            }
         } else {
             status.retweeted = false
             status.retweetCount = (status.retweetCount ?? 1 ) - 1
