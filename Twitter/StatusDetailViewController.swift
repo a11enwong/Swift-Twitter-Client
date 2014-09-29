@@ -13,15 +13,24 @@ class StatusDetailViewController: UIViewController {
     @IBOutlet weak var userHeaderView: UserHeaderView!
     @IBOutlet weak var statusTextView: UITextView!
     @IBOutlet weak var textHeightConstraint: NSLayoutConstraint!
+    @IBOutlet weak var tweetActionsView: TweetButtonsView!
+    
+    var tweetActionsObserver: TweetActionsObserver = TweetActionsObserver.sharedInstance
     
     var status: TwitterStatus?
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        statusTextView.text = status?.rootStatus.text
-        textHeightConstraint.constant = self.heightForTextView() + 18.0
+        showUI()
         
+        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onStatusUpdated:", name: "statusUpdated", object: nil)
+    }
+    
+    func showUI() {
+        statusTextView.text = status?.rootStatus.text
+        textHeightConstraint.constant = self.heightForTextView() + 25.0
+        tweetActionsView.showStatus(status!)
         userHeaderView.loadUser(status!.rootStatus.user!)
     }
 
@@ -50,5 +59,9 @@ class StatusDetailViewController: UIViewController {
         return UIApplication.sharedApplication().statusBarOrientation == UIInterfaceOrientation.Portrait
     }
     
-
+    func onStatusUpdated(notification: NSNotification) {
+        println(notification.userInfo)
+        status = notification.userInfo!["status"] as? TwitterStatus
+        showUI()
+    }
 }
