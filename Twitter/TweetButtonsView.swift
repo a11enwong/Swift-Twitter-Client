@@ -10,7 +10,6 @@ import UIKit
 
 protocol TweetButtonsViewDelegate {
     func onReplyTab()
-    func onRetweetTab()
 }
 
 class TweetButtonsView: UIView {
@@ -59,7 +58,11 @@ class TweetButtonsView: UIView {
     }
     
     func onRetweet() {
-        delegate?.onRetweetTab()
+        println("retweet")
+        if let status = self.status {
+            let data = ["status": status]
+            NSNotificationCenter.defaultCenter().postNotificationName("retweetStatus", object: self, userInfo: data)
+        }
     }
     
     func onFavorite() {

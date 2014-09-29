@@ -14,11 +14,12 @@ class ComposeViewController: UIViewController, TweetCounterViewDelegate, UITextV
     private var swifter = SwifterApi.sharedInstance
     var user: TwitterUser?
     let TWEET_MAX_CHARACTERS = 140
+    var status: TwitterStatus?
+    var counterButton: TweetCounterView?
 
     @IBOutlet weak var statusTextView: UITextView!
     @IBOutlet weak var bottomStatusConstraint: NSLayoutConstraint!
     @IBOutlet weak var userHeaderView: UserHeaderView!
-    var counterButton: TweetCounterView?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,6 +34,9 @@ class ComposeViewController: UIViewController, TweetCounterViewDelegate, UITextV
         
         statusTextView.becomeFirstResponder()
         statusTextView.delegate = self
+        if let status = self.status {
+            statusTextView.text = "@\(status.user!.screenName!) "
+        }
     }
 
     override func didReceiveMemoryWarning() {
@@ -67,7 +71,7 @@ class ComposeViewController: UIViewController, TweetCounterViewDelegate, UITextV
         let data = ["status": newStatus]
         NSNotificationCenter.defaultCenter().postNotificationName("statusCreated", object: self, userInfo: data)
         
-        swifter.postStatusUpdate(statusTextView.text, inReplyToStatusID: nil, lat: nil, long: nil, placeID: nil,
+        swifter.postStatusUpdate(statusTextView.text, inReplyToStatusID: status?.id, lat: nil, long: nil, placeID: nil,
             displayCoordinates: false, trimUser: false, success: { (status) -> Void in
             println("successfully created a tweet")
         }) { (error) -> Void in

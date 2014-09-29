@@ -10,7 +10,7 @@ import Foundation
 import SwifteriOS
 
 class TwitterStatus: NSObject, NSCoding {
-    var id: Double?
+    var id: Int?
     var text: String?
     var createdAt: NSDate?
     var retweetCount: Int?
@@ -32,7 +32,7 @@ class TwitterStatus: NSObject, NSCoding {
 
     
     init(jsonValue: Dictionary<String, JSONValue>) {
-        id = jsonValue["id"]?.double
+        id = jsonValue["id"]?.integer
         text = jsonValue["text"]?.string
         
         var dateFormater = NSDateFormatter()
@@ -65,7 +65,7 @@ class TwitterStatus: NSObject, NSCoding {
     }
     
     required init(coder aDecoder: NSCoder) {
-        id  = aDecoder.decodeObjectForKey("id") as? Double
+        id  = aDecoder.decodeObjectForKey("id") as? Int
         text  = aDecoder.decodeObjectForKey("profileImageUrl") as? String
         createdAt  = aDecoder.decodeObjectForKey("name") as? NSDate
         retweetCount  = aDecoder.decodeObjectForKey("screenName") as? Int

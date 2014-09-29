@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TweetTableViewCellDelegate {
+    func onReplyStatus(status: TwitterStatus)
+}
+
 class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
 
     @IBOutlet weak var thumnailImageView: UIImageView!
@@ -21,12 +25,17 @@ class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
     @IBOutlet weak var retweetedLabel: UILabel!
     @IBOutlet weak var buttonsView: TweetButtonsView!
     
+    var delegate: TweetTableViewCellDelegate?
+    var status: TwitterStatus?
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
     func loadStatus(status: TwitterStatus) {
+        self.status = status
+        
         let rootStatus = status.rootStatus
         
         nameLabel.text = rootStatus.user?.name
@@ -54,11 +63,11 @@ class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
     }
     
     func onReplyTab() {
-        println("retweet")
+        println("reply")
+        if let status = self.status {
+            delegate?.onReplyStatus(status)
+        }
     }
     
-    func onRetweetTab() {
-        println("retweet")
-    }
     
 }

@@ -9,7 +9,8 @@
 import UIKit
 import SwifteriOS
 
-class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class HomeViewController: UIViewController, UITableViewDataSource,
+        UITableViewDelegate, TweetTableViewCellDelegate {
 
     @IBOutlet weak var tableView: UITableView!
     private var defaults = NSUserDefaults.standardUserDefaults()
@@ -59,6 +60,7 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var cell = reusableTableCell("TweetTableViewCell") as TweetTableViewCell
         
         cell.loadStatus(statuses[indexPath.row])
+        cell.delegate = self
         
         return cell
     }
@@ -139,6 +141,14 @@ class HomeViewController: UIViewController, UITableViewDataSource, UITableViewDe
         }
         
         tableView.reloadData()
+    }
+    
+    func onReplyStatus(status: TwitterStatus) {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("ComposeNavigationController") as UINavigationController
+        let controller = navigationController.viewControllers.first as ComposeViewController
+        controller.status = status
+        
+        presentViewController(navigationController, animated: true, completion: nil)
     }
 }
 

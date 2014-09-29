@@ -98,7 +98,7 @@
         <!--Compose View Controller-->
         <scene sceneID="nht-gB-sbh">
             <objects>
-                <viewController storyboardIdentifier="NewStatusViewController" id="emC-Lf-nJu" customClass="ComposeViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ComposeViewController" id="emC-Lf-nJu" customClass="ComposeViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="JRB-ea-i54"/>
                         <viewControllerLayoutGuide type="bottom" id="C0Y-o0-ad2"/>
@@ -208,7 +208,7 @@
         <!--Navigation Controller-->
         <scene sceneID="1Mq-gS-oBB">
             <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="tfZ-Yo-0Ba" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="ComposeNavigationController" automaticallyAdjustsScrollViewInsets="NO" id="tfZ-Yo-0Ba" sceneMemberID="viewController">
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="NA0-xM-lBO">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
