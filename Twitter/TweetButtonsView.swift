@@ -30,13 +30,25 @@ class TweetButtonsView: UIView {
         var replyTab = UITapGestureRecognizer(target: self, action: "onReply")
         replyImage.addGestureRecognizer(replyTab)
         
+        var image = UIImage(named: "reply")
+        image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        replyImage.image = image
+        
         retweetImage.userInteractionEnabled = true
         var retweetTab = UITapGestureRecognizer(target: self, action: "onRetweet")
         retweetImage.addGestureRecognizer(retweetTab)
         
+        image = UIImage(named: "retweet")
+        image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        retweetImage.image = image
+        
         favoriteImage.userInteractionEnabled = true
         var favoriteTab = UITapGestureRecognizer(target: self, action: "onFavorite")
         favoriteImage.addGestureRecognizer(favoriteTab)
+        
+        image = UIImage(named: "favorite")
+        image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        favoriteImage.image = image
         
         self.addSubview(view);
         
@@ -75,24 +87,20 @@ class TweetButtonsView: UIView {
     
     func showStatus(status: TwitterStatus) {
         
-        var image = UIImage(named: "retweet")
-        image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        retweetImage.image = image
-        
         if status.retweeted ?? false {
             retweetImage.tintColor = ColorPalette.Green.get()
         } else {
             retweetImage.tintColor = ColorPalette.Gray.get()
         }
         
-        image = UIImage(named: "favorite")
-        image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
-        favoriteImage.image = image
         if status.favorited ?? false {
             favoriteImage.tintColor = ColorPalette.Yellow.get()
         } else {
             favoriteImage.tintColor = ColorPalette.Gray.get()
         }
+        
+        replyImage.tintColor = ColorPalette.Gray.get()
+        
         
         self.status = status
     }

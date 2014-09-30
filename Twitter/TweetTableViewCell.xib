@@ -15,23 +15,23 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" verticalCompressionResistancePriority="1000" text="Label asdfoiasdfj asdfasdf" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Sas-Mg-6F6">
-                        <rect key="frame" x="76" y="66" width="345" height="81"/>
+                        <rect key="frame" x="76" y="63" width="345" height="88"/>
                         <fontDescription key="fontDescription" type="system" pointSize="15"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="oX0-BT-gew">
-                        <rect key="frame" x="8" y="5" width="413" height="32"/>
+                        <rect key="frame" x="8" y="8" width="413" height="26"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet" translatesAutoresizingMaskIntoConstraints="NO" id="m2P-Oi-D0L">
-                                <rect key="frame" x="33" y="0.0" width="32" height="32"/>
+                                <rect key="frame" x="31" y="0.0" width="25" height="25"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="32" id="5T8-VC-8kQ"/>
-                                    <constraint firstAttribute="width" constant="32" id="yz0-Av-HCb"/>
+                                    <constraint firstAttribute="height" constant="25" id="5T8-VC-8kQ"/>
+                                    <constraint firstAttribute="width" constant="25" id="yz0-Av-HCb"/>
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="waffertch retweeted" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sjT-VT-5M0">
-                                <rect key="frame" x="70" y="8" width="335" height="16"/>
+                                <rect key="frame" x="61" y="4" width="344" height="16"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="13"/>
                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
@@ -39,51 +39,50 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="bottom" secondItem="m2P-Oi-D0L" secondAttribute="bottom" id="ERi-8Z-kgw"/>
                             <constraint firstItem="m2P-Oi-D0L" firstAttribute="top" secondItem="oX0-BT-gew" secondAttribute="top" id="H61-ZH-CLy"/>
                             <constraint firstAttribute="trailing" secondItem="sjT-VT-5M0" secondAttribute="trailing" constant="8" id="Yhd-lp-01l"/>
-                            <constraint firstItem="m2P-Oi-D0L" firstAttribute="leading" secondItem="oX0-BT-gew" secondAttribute="leading" constant="33" id="ZwI-hr-wk3"/>
+                            <constraint firstItem="m2P-Oi-D0L" firstAttribute="leading" secondItem="oX0-BT-gew" secondAttribute="leading" constant="31" id="ZwI-hr-wk3"/>
                             <constraint firstItem="sjT-VT-5M0" firstAttribute="leading" secondItem="m2P-Oi-D0L" secondAttribute="trailing" constant="5" id="haJ-cp-xCe"/>
-                            <constraint firstAttribute="height" constant="32" id="vxa-Du-siV"/>
+                            <constraint firstAttribute="height" constant="26" id="vxa-Du-siV"/>
                             <constraint firstItem="sjT-VT-5M0" firstAttribute="centerY" secondItem="m2P-Oi-D0L" secondAttribute="centerY" constant="-0.5" id="w34-ia-fxb"/>
                         </constraints>
                     </view>
                     <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Dap-Jf-A62">
-                        <rect key="frame" x="8" y="39" width="60" height="60"/>
+                        <rect key="frame" x="8" y="36" width="60" height="60"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="60" id="Bpj-QL-ToN"/>
                             <constraint firstAttribute="width" constant="60" id="OUV-i6-dJd"/>
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hector Mon" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7Us-Ij-dTj">
-                        <rect key="frame" x="76" y="42" width="72" height="16"/>
+                        <rect key="frame" x="76" y="39" width="72" height="16"/>
                         <fontDescription key="fontDescription" type="boldSystem" pointSize="13"/>
                         <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" horizontalCompressionResistancePriority="749" text="@hectorups" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="m7G-Ss-bmy">
-                        <rect key="frame" x="158" y="42" width="199" height="16"/>
+                        <rect key="frame" x="158" y="39" width="199" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="just now" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Xkw-BW-C46">
-                        <rect key="frame" x="370" y="42" width="51" height="16"/>
+                        <rect key="frame" x="370" y="39" width="51" height="16"/>
                         <fontDescription key="fontDescription" type="system" pointSize="13"/>
                         <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
                         <nil key="highlightedColor"/>
                     </label>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="s6h-6U-o2Z" customClass="TweetButtonsView" customModule="Twitter" customModuleProvider="target">
-                        <rect key="frame" x="76" y="149" width="183" height="29"/>
+                        <rect key="frame" x="76" y="153" width="183" height="25"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
-                            <constraint firstAttribute="height" constant="29" id="Owm-O0-hJJ"/>
+                            <constraint firstAttribute="height" constant="25" id="Owm-O0-hJJ"/>
                             <constraint firstAttribute="width" constant="183" id="bqD-LI-CIN"/>
                         </constraints>
                     </view>
                 </subviews>
                 <constraints>
-                    <constraint firstItem="oX0-BT-gew" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" constant="-3" id="72Z-C1-Ay4"/>
+                    <constraint firstItem="oX0-BT-gew" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="topMargin" id="72Z-C1-Ay4"/>
                     <constraint firstAttribute="bottomMargin" secondItem="s6h-6U-o2Z" secondAttribute="bottom" id="Aar-Kx-qMO"/>
                     <constraint firstItem="Dap-Jf-A62" firstAttribute="top" secondItem="oX0-BT-gew" secondAttribute="bottom" constant="2" id="BK8-i8-4jv"/>
                     <constraint firstItem="m7G-Ss-bmy" firstAttribute="leading" secondItem="7Us-Ij-dTj" secondAttribute="trailing" constant="10" id="DCO-wi-cUO"/>
@@ -107,6 +106,7 @@
             <connections>
                 <outlet property="buttonsView" destination="s6h-6U-o2Z" id="mtk-TP-Azs"/>
                 <outlet property="nameLabel" destination="7Us-Ij-dTj" id="Icp-s2-LWT"/>
+                <outlet property="retweetImageView" destination="m2P-Oi-D0L" id="gou-Be-Aic"/>
                 <outlet property="retweetViewHeightConstraint" destination="vxa-Du-siV" id="L6d-it-Ep0"/>
                 <outlet property="retweetedLabel" destination="sjT-VT-5M0" id="Bid-EO-5Kb"/>
                 <outlet property="retweetedView" destination="oX0-BT-gew" id="oz6-ra-sIl"/>
@@ -119,6 +119,6 @@
         </tableViewCell>
     </objects>
     <resources>
-        <image name="retweet" width="32" height="32"/>
+        <image name="retweet" width="600" height="600"/>
     </resources>
 </document>

@@ -24,6 +24,7 @@ class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
     @IBOutlet weak var retweetViewHeightConstraint: NSLayoutConstraint!
     @IBOutlet weak var retweetedLabel: UILabel!
     @IBOutlet weak var buttonsView: TweetButtonsView!
+    @IBOutlet var retweetImageView: UIImageView!
     
     var delegate: TweetTableViewCellDelegate?
     var status: TwitterStatus?
@@ -37,6 +38,9 @@ class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
         self.status = status
         
         let rootStatus = status.rootStatus
+        
+        retweetImageView.image = UIImage(named: "retweet").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        retweetImageView.tintColor = ColorPalette.Gray.get()
         
         nameLabel.text = rootStatus.user?.name
         screenNameLabel.text = "@\(rootStatus.user!.screenName!)"

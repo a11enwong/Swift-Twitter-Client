@@ -36,7 +36,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,
     
         
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refersh")
-        refreshControl.addTarget(self, action: "fetchTwitterHomeStream", forControlEvents: UIControlEvents.ValueChanged)
+        refreshControl.addTarget(self, action: "onPullToRefresh", forControlEvents: UIControlEvents.ValueChanged)
         tableView.addSubview(refreshControl)
         
         tableView.delegate = self
@@ -90,6 +90,10 @@ class HomeViewController: UIViewController, UITableViewDataSource,
         
         
         return possibleCell!
+    }
+    
+    func onPullToRefresh() {
+        fetchTwitterHomeStream(replace: true)
     }
     
     func fetchTwitterHomeStream(replace: Bool = true) {
