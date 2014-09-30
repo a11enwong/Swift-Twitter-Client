@@ -35,6 +35,8 @@ class StatusDetailViewController: UIViewController {
             style: UIBarButtonItemStyle.Plain, target: self, action: "onReply")
         self.navigationItem.rightBarButtonItem?.tintColor = ColorPalette.White.get()
         
+        
+        
     }
     
     func showUI() {

@@ -74,16 +74,24 @@ class TweetButtonsView: UIView {
     }
     
     func showStatus(status: TwitterStatus) {
+        
+        var image = UIImage(named: "retweet")
+        image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        retweetImage.image = image
+        
         if status.retweeted ?? false {
-            retweetImage.image = UIImage(named: "retweet_green")
+            retweetImage.tintColor = ColorPalette.Green.get()
         } else {
-            retweetImage.image = UIImage(named: "retweet")
+            retweetImage.tintColor = ColorPalette.Gray.get()
         }
         
+        image = UIImage(named: "favorite")
+        image = image.imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        favoriteImage.image = image
         if status.favorited ?? false {
-            favoriteImage.image = UIImage(named: "favorite_on")
+            favoriteImage.tintColor = ColorPalette.Yellow.get()
         } else {
-            favoriteImage.image = UIImage(named: "favorite")
+            favoriteImage.tintColor = ColorPalette.Gray.get()
         }
         
         self.status = status

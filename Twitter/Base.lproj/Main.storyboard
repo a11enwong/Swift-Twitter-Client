@@ -124,7 +124,7 @@
                             </view>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71Z-Zv-M43" customClass="TweetButtonsView" customModule="Twitter" customModuleProvider="target">
                                 <rect key="frame" x="16" y="201" width="176" height="31"/>
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.99215692281723022" green="0.69411766529083252" blue="0.23137256503105164" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="31" id="KkE-hn-5fi"/>
                                     <constraint firstAttribute="width" constant="176" id="Z6a-c2-TDp"/>

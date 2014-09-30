@@ -24,7 +24,7 @@
                         <constraint firstAttribute="width" secondItem="gcf-tO-qeK" secondAttribute="height" multiplier="1:1" id="h4D-oA-OPj"/>
                     </constraints>
                 </imageView>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet" translatesAutoresizingMaskIntoConstraints="NO" id="4ob-Y2-cTy">
+                <imageView opaque="NO" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="retweet" translatesAutoresizingMaskIntoConstraints="NO" id="4ob-Y2-cTy">
                     <rect key="frame" x="154" y="3" width="48" height="48"/>
                     <constraints>
                         <constraint firstAttribute="width" secondItem="4ob-Y2-cTy" secondAttribute="height" multiplier="1:1" id="HcO-MS-XDp"/>
@@ -57,6 +57,6 @@
     <resources>
         <image name="favorite" width="60" height="60"/>
         <image name="reply" width="60" height="60"/>
-        <image name="retweet" width="32" height="32"/>
+        <image name="retweet" width="600" height="600"/>
     </resources>
 </document>
