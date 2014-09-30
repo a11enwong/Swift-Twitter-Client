@@ -152,6 +152,7 @@
                         <outlet property="retweetsCount" destination="mJN-p5-Pwg" id="wdI-uu-Qm3"/>
                         <outlet property="statusTextView" destination="l2A-VZ-xy7" id="XlU-XU-YnD"/>
                         <outlet property="textHeightConstraint" destination="BBt-m7-pXV" id="eCY-hY-OGT"/>
+                        <outlet property="timeLabel" destination="126-jj-0r2" id="cgm-tf-9MH"/>
                         <outlet property="tweetActionsView" destination="71Z-Zv-M43" id="rp1-sg-FqT"/>
                         <outlet property="userHeaderView" destination="DaQ-CR-cUa" id="TrY-3S-sQW"/>
                     </connections>

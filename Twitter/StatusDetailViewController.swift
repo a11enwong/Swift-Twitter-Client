@@ -16,6 +16,7 @@ class StatusDetailViewController: UIViewController {
     @IBOutlet weak var tweetActionsView: TweetButtonsView!
     @IBOutlet weak var retweetsCount: UILabel!
     @IBOutlet weak var favoritesCount: UILabel!
+    @IBOutlet var timeLabel: UILabel!
     
     var tweetActionsObserver: TweetActionsObserver = TweetActionsObserver.sharedInstance
     
@@ -43,6 +44,11 @@ class StatusDetailViewController: UIViewController {
         userHeaderView.loadUser(status!.rootStatus.user!)
         retweetsCount.text = "\(status!.rootStatus.retweetCount!)"
         favoritesCount.text = "\(status!.rootStatus.favoriteCount!)"
+        
+        let dateFormatter = NSDateFormatter()
+        dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
+        timeLabel.text = dateFormatter.stringFromDate(status!.rootStatus.createdAt!)
+        
     }
 
     override func didReceiveMemoryWarning() {
