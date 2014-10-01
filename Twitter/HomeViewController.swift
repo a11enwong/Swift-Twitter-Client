@@ -15,7 +15,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,
     @IBOutlet weak var tableView: UITableView!
     private var defaults = NSUserDefaults.standardUserDefaults()
     
-    let TWEETS_PER_LOAD = 18
+    let TWEETS_PER_LOAD = 20
     var swifter = SwifterApi.sharedInstance
     var statuses = [TwitterStatus]()
     var refreshControl: UIRefreshControl = UIRefreshControl()
@@ -48,6 +48,9 @@ class HomeViewController: UIViewController, UITableViewDataSource,
         
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onStatusCreated:", name: "statusCreated", object: nil)
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "onStatusUpdated:", name: "statusUpdated", object: nil)
+        
+
+        self.tableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "TweetTableViewCell")
     }
 
     override func didReceiveMemoryWarning() {
@@ -65,6 +68,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,
         cell.loadStatus(statuses[indexPath.row])
         cell.delegate = self
         
+        println("Row \(indexPath.row) from \(statuses.count)")
         if statuses.count == (indexPath.row + 1) && !endResults && !fetchingData {
             fetchTwitterHomeStream(replace: false)
         }
@@ -83,11 +87,6 @@ class HomeViewController: UIViewController, UITableViewDataSource,
     
     func reusableTableCell(identifier: String) -> UITableViewCell {
         var possibleCell = tableView.dequeueReusableCellWithIdentifier(identifier) as UITableViewCell?
-        if possibleCell == nil {
-            let topLevelObjects = NSBundle.mainBundle().loadNibNamed(identifier, owner: self, options: nil)
-            possibleCell = topLevelObjects.first as UITableViewCell?
-        }
-        
         
         return possibleCell!
     }
@@ -120,12 +119,15 @@ class HomeViewController: UIViewController, UITableViewDataSource,
                 println("\(statuses!.count) results fetched successfully")
                 self.refreshControl.endRefreshing()
                 
-                self.statuses = []
+                if replace {
+                    self.statuses = []
+                }
+                
                 for status in statuses! {
                    self.statuses.append(TwitterStatus(jsonValue: status.object!))
                 }
                 
-                self.endResults = statuses!.count < self.TWEETS_PER_LOAD
+                self.endResults = statuses!.count == 0
                 
                 self.fetchingData = false
                 self.tableView.tableFooterView = nil
@@ -158,9 +160,9 @@ class HomeViewController: UIViewController, UITableViewDataSource,
         
         let updatedStatus = notification.userInfo!["status"] as TwitterStatus
         
+        println(updatedStatus)
         for (i, status) in enumerate(statuses) {
             if status.id! == updatedStatus.id! {
-                println("updating status \(i) to \(updatedStatus.favorited!)")
                 statuses[i...i] = [updatedStatus]
             }
         }
