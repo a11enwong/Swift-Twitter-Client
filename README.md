@@ -3,6 +3,8 @@ Swift-Twitter-Client
 
 ~20 hours spent
 
+![ios_assignment_week3](https://cloud.githubusercontent.com/assets/1814099/4469004/9a245e8c-4909-11e4-93d1-f3e0513e86f1.gif)
+
 ## Completed user stories
 
  * [x] User can sign in using OAuth login flow
