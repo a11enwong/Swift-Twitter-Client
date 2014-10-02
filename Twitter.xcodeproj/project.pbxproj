@@ -23,6 +23,9 @@
 		9526FB1619D73E6000AA74BF /* UserHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 9526FB1519D73E6000AA74BF /* UserHeaderView.xib */; };
 		9526FB1819D7426000AA74BF /* ComposeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526FB1719D7426000AA74BF /* ComposeViewController.swift */; };
 		9526FB1A19D74CCD00AA74BF /* TwitterAccount.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9526FB1919D74CCD00AA74BF /* TwitterAccount.swift */; };
+		953944AA19DDC3E8004676FD /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953944A819DDC3E8004676FD /* MenuViewController.swift */; };
+		953944AB19DDC3E8004676FD /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953944A919DDC3E8004676FD /* MenuViewController.xib */; };
+		953944AD19DDE94C004676FD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953944AC19DDE94C004676FD /* MainViewController.swift */; };
 		95F79ECF19D3D8FD00C5EA1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F79ECE19D3D8FD00C5EA1D /* AppDelegate.swift */; };
 		95F79ED119D3D8FD00C5EA1D /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95F79ED019D3D8FD00C5EA1D /* HomeViewController.swift */; };
 		95F79ED419D3D8FD00C5EA1D /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 95F79ED219D3D8FD00C5EA1D /* Main.storyboard */; };
@@ -105,6 +108,9 @@
 		9526FB1519D73E6000AA74BF /* UserHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = UserHeaderView.xib; sourceTree = "<group>"; };
 		9526FB1719D7426000AA74BF /* ComposeViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ComposeViewController.swift; sourceTree = "<group>"; };
 		9526FB1919D74CCD00AA74BF /* TwitterAccount.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = TwitterAccount.swift; sourceTree = "<group>"; };
+		953944A819DDC3E8004676FD /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
+		953944A919DDC3E8004676FD /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
+		953944AC19DDE94C004676FD /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		95F79EC919D3D8FD00C5EA1D /* Twitter.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Twitter.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		95F79ECD19D3D8FD00C5EA1D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		95F79ECE19D3D8FD00C5EA1D /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -165,6 +171,9 @@
 				9526FA9A19D520D900AA74BF /* LoginViewController.swift */,
 				9526FB1719D7426000AA74BF /* ComposeViewController.swift */,
 				950F4D2E19D799FC007D6E22 /* StatusDetailViewController.swift */,
+				953944A819DDC3E8004676FD /* MenuViewController.swift */,
+				953944A919DDC3E8004676FD /* MenuViewController.xib */,
+				953944AC19DDE94C004676FD /* MainViewController.swift */,
 			);
 			name = controllers;
 			sourceTree = "<group>";
@@ -195,6 +204,14 @@
 			name = utils;
 			sourceTree = "<group>";
 		};
+		953944AE19DE1436004676FD /* storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				95F79ED219D3D8FD00C5EA1D /* Main.storyboard */,
+			);
+			name = storyboards;
+			sourceTree = "<group>";
+		};
 		95F79EC019D3D8FD00C5EA1D = {
 			isa = PBXGroup;
 			children = (
@@ -219,6 +236,7 @@
 		95F79ECB19D3D8FD00C5EA1D /* Twitter */ = {
 			isa = PBXGroup;
 			children = (
+				953944AE19DE1436004676FD /* storyboards */,
 				950F4D3F19D8B24A007D6E22 /* observers */,
 				9526FB0C19D6850800AA74BF /* utils */,
 				9526FAFE19D6672A00AA74BF /* models */,
@@ -261,7 +279,6 @@
 		95F79EEE19D3DA4800C5EA1D /* views */ = {
 			isa = PBXGroup;
 			children = (
-				95F79ED219D3D8FD00C5EA1D /* Main.storyboard */,
 				95F79ED719D3D8FD00C5EA1D /* LaunchScreen.xib */,
 				95F79EEF19D3DAAE00C5EA1D /* TweetTableViewCell.swift */,
 				95F79EF019D3DAAE00C5EA1D /* TweetTableViewCell.xib */,
@@ -335,6 +352,7 @@
 				TargetAttributes = {
 					95F79EC819D3D8FD00C5EA1D = {
 						CreatedOnToolsVersion = 6.0.1;
+						DevelopmentTeam = A8R4NMSA7A;
 					};
 					95F79EDD19D3D8FD00C5EA1D = {
 						CreatedOnToolsVersion = 6.0.1;
@@ -413,6 +431,7 @@
 				9526FB1619D73E6000AA74BF /* UserHeaderView.xib in Resources */,
 				95F79ED419D3D8FD00C5EA1D /* Main.storyboard in Resources */,
 				95F79ED919D3D8FD00C5EA1D /* LaunchScreen.xib in Resources */,
+				953944AB19DDC3E8004676FD /* MenuViewController.xib in Resources */,
 				950F4D2C19D776A9007D6E22 /* TweetCounterView.xib in Resources */,
 				95F79ED619D3D8FD00C5EA1D /* Images.xcassets in Resources */,
 				950F4D3919D89BCB007D6E22 /* TweetButtonsView.xib in Resources */,
@@ -474,6 +493,8 @@
 				9526FB1219D6852600AA74BF /* ColorPalette.swift in Sources */,
 				95F79EF119D3DAAE00C5EA1D /* TweetTableViewCell.swift in Sources */,
 				950F4D3B19D89BE0007D6E22 /* TweetButtonsView.swift in Sources */,
+				953944AD19DDE94C004676FD /* MainViewController.swift in Sources */,
+				953944AA19DDC3E8004676FD /* MenuViewController.swift in Sources */,
 				9526FB1819D7426000AA74BF /* ComposeViewController.swift in Sources */,
 				950F4D2619D77666007D6E22 /* TweetCounterView.swift in Sources */,
 				950F4D4119D8B2E1007D6E22 /* TweetActionsObserver.swift in Sources */,
@@ -611,11 +632,15 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Twitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Twitter/Twitter-Bridging-Header.h";
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -625,10 +650,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
 				INFOPLIST_FILE = Twitter/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				SWIFT_OBJC_BRIDGING_HEADER = "Twitter/Twitter-Bridging-Header.h";
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

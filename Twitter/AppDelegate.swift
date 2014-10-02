@@ -18,8 +18,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
         // Override point for customization after application launch.
-        //storyboard = [UIStoryboard storyboardWithName:@"LoggedIn" bundle:[NSBundle mainBundle]];
         if let data = defaults.objectForKey("account") as NSData? {
             let account = NSKeyedUnarchiver.unarchiveObjectWithData(data) as TwitterAccount
             let credentialToken = SwifterCredential.OAuthAccessToken(key: account.key, secret: account.secret)

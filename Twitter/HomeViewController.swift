@@ -25,14 +25,6 @@ class HomeViewController: UIViewController, UITableViewDataSource,
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        navigationController?.navigationBar.barTintColor = ColorPalette.Blue.get()
-        navigationController?.navigationBar.titleTextAttributes = NSDictionary(
-            object: ColorPalette.White.get(), forKey: NSForegroundColorAttributeName)
-        title = "Home"
-        
-        self.navigationItem.leftBarButtonItem = UIBarButtonItem(title: "Sign Out",
-            style: UIBarButtonItemStyle.Plain, target: self, action: "onSignOut")
-        self.navigationItem.leftBarButtonItem?.tintColor = ColorPalette.White.get()
     
         
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refersh")
@@ -51,6 +43,7 @@ class HomeViewController: UIViewController, UITableViewDataSource,
         
 
         self.tableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "TweetTableViewCell")
+        
     }
 
     override func didReceiveMemoryWarning() {
@@ -184,5 +177,19 @@ class HomeViewController: UIViewController, UITableViewDataSource,
         spinner.color = ColorPalette.Blue.get()
         tableView.tableFooterView = spinner
     }
+    
+
+    @IBAction func handleLeftEdgeGesture(sender: UIScreenEdgePanGestureRecognizer) {
+        println("hiii")
+        switch sender.state {
+        case .Began:
+            println("begin pan")
+        case .Changed:
+            println("changed pan")
+        default:
+            println("other status")
+        }
+    }
+    
 }
 
