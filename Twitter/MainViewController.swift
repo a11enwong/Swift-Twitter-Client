@@ -13,6 +13,25 @@ class MainViewController: UIViewController {
     @IBOutlet var contentContainer: UIView!
     @IBOutlet var menuLeftConstraint: NSLayoutConstraint!
     var showingMenu = false
+    
+    var controllers = [String: UIViewController]()
+    
+    var activeViewController: UIViewController? {
+        didSet(oldViewController) {
+            if let oldVC = oldViewController {
+                oldVC.willMoveToParentViewController(nil)
+                oldVC.view.removeFromSuperview()
+                oldVC.removeFromParentViewController()
+            }
+            
+            if let newVC = activeViewController {
+                self.addChildViewController(newVC)
+                newVC.view.autoresizingMask = .FlexibleWidth | .FlexibleHeight
+                newVC.view.frame = self.contentContainer.bounds
+                self.contentContainer.addSubview(newVC.view)
+            }
+        }
+    }
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,15 +43,21 @@ class MainViewController: UIViewController {
 
     }
     
+    func getController(name: String, generator: () -> UIViewController) -> UIViewController {
+        if controllers[name] == nil {
+            controllers[name] = generator()
+        }
+        
+        return controllers[name]!
+    }
+    
     override func viewDidAppear(animated: Bool) {
         println("screen \(UIScreen.mainScreen().bounds.width), container \(contentContainer.frame.width)")
         
-        let homeController = self.storyboard!.instantiateViewControllerWithIdentifier("HomeViewController") as HomeViewController
-        addChildViewController(homeController)
-        homeController.didMoveToParentViewController(self)
-        self.view.layoutIfNeeded()
-        homeController.view.frame = contentContainer.bounds
-        contentContainer.addSubview(homeController.view)
+        activeViewController = getController("menu", generator: { () -> UIViewController in
+            return self.storyboard!.instantiateViewControllerWithIdentifier("HomeViewController") as UIViewController
+        })
+        
         
         var menuController = MenuViewController(nibName: "MenuViewController", bundle: nil)
         addChildViewController(menuController)
@@ -77,7 +102,7 @@ class MainViewController: UIViewController {
         case .Began:
             println(sender.locationInView(view))
             let xTab = sender.locationInView(view).x
-            if xTab < 44 {
+            if xTab < 64 {
                 showingMenu = true
             } else if menuLeftConstraint.constant == maxValue {
                 showingMenu = true
