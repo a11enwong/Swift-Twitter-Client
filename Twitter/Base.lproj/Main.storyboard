@@ -48,7 +48,9 @@
                             <outletCollection property="gestureRecognizers" destination="HkE-sP-5Fm" appends="YES" id="1UC-ia-Gb7"/>
                         </connections>
                     </view>
-                    <navigationItem key="navigationItem" id="T5k-t6-HSQ"/>
+                    <navigationItem key="navigationItem" id="T5k-t6-HSQ">
+                        <barButtonItem key="leftBarButtonItem" image="menu" id="ZMq-WT-jp5"/>
+                    </navigationItem>
                     <connections>
                         <outlet property="contentContainer" destination="1y1-ap-ZaK" id="sEA-Og-dFT"/>
                         <outlet property="menuContainer" destination="bEc-RK-hFT" id="4uu-hl-KR5"/>
@@ -68,48 +70,6 @@
                 </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1801" y="-254"/>
-        </scene>
-        <!--Home View Controller-->
-        <scene sceneID="ufC-wZ-h7g">
-            <objects>
-                <viewController storyboardIdentifier="HomeViewController" id="vXZ-lx-hvc" customClass="HomeViewController" customModule="Twitter" customModuleProvider="target" sceneMemberID="viewController">
-                    <layoutGuides>
-                        <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
-                        <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
-                    </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="kh9-bI-dsS">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="64" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="5LP-r1-Wj7">
-                                <rect key="frame" x="0.0" y="-8" width="600" height="600"/>
-                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            </tableView>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <gestureRecognizers/>
-                        <constraints>
-                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="5LP-r1-Wj7" secondAttribute="bottom" constant="8" id="5bg-Ez-otU"/>
-                            <constraint firstItem="5LP-r1-Wj7" firstAttribute="top" secondItem="kh9-bI-dsS" secondAttribute="topMargin" constant="-8" id="AV2-G7-gOv"/>
-                            <constraint firstItem="5LP-r1-Wj7" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="-16" id="aEW-cw-gp7"/>
-                            <constraint firstAttribute="trailingMargin" secondItem="5LP-r1-Wj7" secondAttribute="trailing" constant="-16" id="kcH-PJ-Cpo"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" id="Iy1-Zb-HNx">
-                        <barButtonItem key="rightBarButtonItem" image="compose" id="Sxg-8L-fG6">
-                            <color key="tintColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                            <connections>
-                                <segue destination="tfZ-Yo-0Ba" kind="presentation" id="Hw3-NC-5g8"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
-                    <connections>
-                        <outlet property="tableView" destination="5LP-r1-Wj7" id="q3T-y2-pe5"/>
-                    </connections>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="x5A-6p-PRh" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1098" y="421"/>
         </scene>
         <!--Status Detail View Controller-->
         <scene sceneID="Mai-FD-kWK">
@@ -334,7 +294,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="1aX-bZ-mrQ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1013" y="1152"/>
+            <point key="canvasLocation" x="1054" y="434"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="K71-37-gfK">
@@ -357,6 +317,6 @@
     </scenes>
     <resources>
         <image name="button_login" width="290" height="62"/>
-        <image name="compose" width="32" height="32"/>
+        <image name="menu" width="42" height="42"/>
     </resources>
 </document>

@@ -8,16 +8,21 @@
 
 import UIKit
 
-class MainViewController: UIViewController {
+class MainViewController: UIViewController, MenuViewControllerDelegate {
     @IBOutlet var menuContainer: UIView!
     @IBOutlet var contentContainer: UIView!
     @IBOutlet var menuLeftConstraint: NSLayoutConstraint!
     var showingMenu = false
-    
+    var defaults = NSUserDefaults.standardUserDefaults()
+    var swifter = SwifterApi.sharedInstance
     var controllers = [String: UIViewController]()
     
     var activeViewController: UIViewController? {
         didSet(oldViewController) {
+            if activeViewController == oldViewController {
+                return
+            }
+            
             if let oldVC = oldViewController {
                 oldVC.willMoveToParentViewController(nil)
                 oldVC.view.removeFromSuperview()
@@ -40,7 +45,12 @@ class MainViewController: UIViewController {
         navigationController?.navigationBar.barTintColor = ColorPalette.Blue.get()
         navigationController?.navigationBar.titleTextAttributes = NSDictionary(
             object: ColorPalette.White.get(), forKey: NSForegroundColorAttributeName)
-
+        
+        let menuImage = UIImage(named: "menu").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        navigationItem.leftBarButtonItem?.image = menuImage
+        navigationItem.leftBarButtonItem?.tintColor = ColorPalette.White.get()
+        navigationItem.leftBarButtonItem?.target = self
+        navigationItem.leftBarButtonItem?.action = "toggleMenu"
     }
     
     func getController(name: String, generator: () -> UIViewController) -> UIViewController {
@@ -54,12 +64,16 @@ class MainViewController: UIViewController {
     override func viewDidAppear(animated: Bool) {
         println("screen \(UIScreen.mainScreen().bounds.width), container \(contentContainer.frame.width)")
         
-        activeViewController = getController("menu", generator: { () -> UIViewController in
-            return self.storyboard!.instantiateViewControllerWithIdentifier("HomeViewController") as UIViewController
+        activeViewController = getController("home", generator: { () -> UIViewController in
+            HomeViewController(nibName: "BaseStatusViewController", bundle: nil)
         })
         
         
-        var menuController = MenuViewController(nibName: "MenuViewController", bundle: nil)
+        var menuController = getController("menu", generator: { () -> UIViewController in
+            var controller = MenuViewController(nibName: "MenuViewController", bundle: nil)
+            controller.delegate = self
+            return controller
+        })
         addChildViewController(menuController)
         menuController.didMoveToParentViewController(self)
         menuController.view.frame = menuContainer.bounds
@@ -81,9 +95,21 @@ class MainViewController: UIViewController {
             }, completion: nil)
     }
     
+    func closeMenu() {
+        animateMenu(menuContainer.frame.width * -1 - 16)
+    }
+    
+    func toggleMenu() {
+        if menuLeftConstraint.constant == -16.0 {
+            closeMenu()
+        } else {
+            animateMenu(-16.0)
+        }
+    }
+    
 
     @IBAction func handleContainerTab(sender: AnyObject) {
-        animateMenu(menuContainer.frame.width * -1 - 16)
+        closeMenu()
     }
 
     @IBAction func handlePanGesture(sender: UIPanGestureRecognizer) {
@@ -145,5 +171,33 @@ class MainViewController: UIViewController {
         default:
             println("some state")
         }
+    }
+    
+    func onSignOut() {
+        defaults.setObject(nil, forKey: "account")
+        swifter.client.credential = nil
+        
+        let loginViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
+        presentViewController(loginViewController, animated: true, completion: nil)
+    }
+    
+    func menuViewOnClick(item: MenuViewControllerItems) {
+        println("menu clicked")
+        switch item {
+        case .Timeline:
+            activeViewController = getController("home", generator: { () -> UIViewController in
+                HomeViewController(nibName: "BaseStatusViewController", bundle: nil)
+            })
+        case .Mentions:
+            activeViewController = getController("mentions", generator: { () -> UIViewController in
+                MentionsViewController(nibName: "BaseStatusViewController", bundle: nil)
+            })
+        case .Logout:
+            onSignOut()
+        default:
+            println("another view controller")
+            
+        }
+        closeMenu()
     }
 }

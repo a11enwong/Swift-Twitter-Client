@@ -8,9 +8,32 @@
 
 import UIKit
 
+protocol MenuViewControllerDelegate {
+    func menuViewOnClick(item: MenuViewControllerItems)
+}
+
+enum MenuViewControllerItems: Int {
+    case Profile = 0, Timeline, Mentions, Logout
+    
+    static let allValues = [Profile, Timeline, Mentions, Logout]
+    
+    func menuName() -> String {
+        switch self {
+        case .Profile:
+            return "Profile"
+        case .Timeline:
+            return "Timeline"
+        case .Mentions:
+            return "Mentions"
+        case .Logout:
+            return "Logout"
+        }
+    }
+}
+
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
-    var menuItems = ["Profile", "Timeline", "Mentions", "Logout"]
+    var delegate: MenuViewControllerDelegate?
     @IBOutlet var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -31,7 +54,7 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         var cell = UITableViewCell(style: .Default, reuseIdentifier: nil)
         cell.backgroundColor = UIColor.clearColor()
         cell.textLabel?.font = UIFont.systemFontOfSize(20.0)
-        cell.textLabel?.text = self.menuItems[indexPath.row];
+        cell.textLabel?.text = MenuViewControllerItems.fromRaw(indexPath.row)?.menuName()
         cell.textLabel?.textColor = UIColor.lightGrayColor()
         cell.selectionStyle = .None;
         
@@ -39,11 +62,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
     }
     
     func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return menuItems.count
+        return MenuViewControllerItems.allValues.count
     }
     
-    func tableView(tableView: UITableView, didDeselectRowAtIndexPath indexPath: NSIndexPath) {
-        println("selected row \(indexPath.row)")
+    func tableView(tableView: UITableView, didSelectRowAtIndexPath indexPath: NSIndexPath) {
+        println("selected row \(MenuViewControllerItems.fromRaw(indexPath.row)?.menuName())")
+        delegate?.menuViewOnClick(MenuViewControllerItems.fromRaw(indexPath.row)!)
     }
 
 }
