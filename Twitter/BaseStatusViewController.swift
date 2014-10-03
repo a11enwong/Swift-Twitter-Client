@@ -102,13 +102,15 @@ UITableViewDelegate, TweetTableViewCellDelegate {
             self.tableView.tableFooterView = nil
         }
         
-        let sinceID = replace ? nil : statuses.last?.id
+        let maxID = replace ? nil : statuses.last?.id
+        
+        println("sinceId \(maxID)")
         
         if !replace {
             self.showFooterSpinner()
         }
         
-        abstractGetStatuses(TWEETS_PER_LOAD, sinceID: sinceID, maxID: nil, trimUser: false,
+        abstractGetStatuses(TWEETS_PER_LOAD, sinceID: nil, maxID: maxID, trimUser: false,
             contributorDetails: true, includeEntities: true, success: { (statuses) -> Void in
                 println("\(statuses!.count) results fetched successfully")
                 self.refreshControl.endRefreshing()
