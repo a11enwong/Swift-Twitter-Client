@@ -10,6 +10,7 @@ import Foundation
 import SwifteriOS
 
 class TwitterUser: NSObject, NSCoding {
+    var userId: Int?
     var profileBannerUrl: String?
     var profileImageUrl: String?
     var name: String?
@@ -19,6 +20,7 @@ class TwitterUser: NSObject, NSCoding {
     var followersCount: Int?
     
     init( jsonValue: Dictionary<String, JSONValue>) {
+        userId = jsonValue["id"]?.integer
         profileBannerUrl = jsonValue["profile_banner_url"]?.string
         profileImageUrl = jsonValue["profile_image_url"]?.string
         name = jsonValue["name"]?.string
@@ -29,6 +31,7 @@ class TwitterUser: NSObject, NSCoding {
     }
     
     required init(coder aDecoder: NSCoder) {
+        userId = aDecoder.decodeObjectForKey("userId") as? Int
         profileBannerUrl  = aDecoder.decodeObjectForKey("profileBannerUrl") as? String
         profileImageUrl  = aDecoder.decodeObjectForKey("profileImageUrl") as? String
         name  = aDecoder.decodeObjectForKey("name") as? String
@@ -39,6 +42,12 @@ class TwitterUser: NSObject, NSCoding {
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
+        
+        if let userId = self.userId{
+            aCoder.encodeObject(userId, forKey: "userId")
+        }
+        
+        
         if let profileBannerUrl = self.profileBannerUrl{
             aCoder.encodeObject(profileBannerUrl, forKey: "profileBannerUrl")
         }

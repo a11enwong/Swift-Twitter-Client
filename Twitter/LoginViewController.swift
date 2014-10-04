@@ -62,6 +62,8 @@ class LoginViewController: UIViewController {
             let accessToken = self.swifter.client.credential!.accessToken!
             let account = TwitterAccount(user: user, key: accessToken.key, secret: accessToken.secret)
             let data = NSKeyedArchiver.archivedDataWithRootObject(account)
+            
+            println("LOGGED USER ID: \(user.userId)")
             self.defaults.setObject(data, forKey: "account")
             
             self.goToHomeController()

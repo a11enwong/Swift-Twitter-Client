@@ -16,6 +16,7 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
     var defaults = NSUserDefaults.standardUserDefaults()
     var swifter = SwifterApi.sharedInstance
     var controllers = [String: UIViewController]()
+    var currentUser: TwitterUser?
     
     var activeViewController: UIViewController? {
         didSet(oldViewController) {
@@ -51,6 +52,10 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
         navigationItem.leftBarButtonItem?.tintColor = ColorPalette.White.get()
         navigationItem.leftBarButtonItem?.target = self
         navigationItem.leftBarButtonItem?.action = "toggleMenu"
+        
+        let data = defaults.objectForKey("account") as NSData?
+        let account = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as TwitterAccount
+        currentUser = account.user
     }
     
     func getController(name: String, generator: () -> UIViewController) -> UIViewController {
@@ -184,6 +189,12 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
     func menuViewOnClick(item: MenuViewControllerItems) {
         println("menu clicked")
         switch item {
+        case .Profile:
+            activeViewController = getController("profile", generator: { () -> UIViewController in
+                var controller = ProfileViewController(nibName: "BaseStatusViewController", bundle: nil)
+                controller.user = self.currentUser
+                return controller
+            })
         case .Timeline:
             activeViewController = getController("home", generator: { () -> UIViewController in
                 HomeViewController(nibName: "BaseStatusViewController", bundle: nil)

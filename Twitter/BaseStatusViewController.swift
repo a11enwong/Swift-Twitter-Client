@@ -13,6 +13,7 @@ class BaseStatusViewController: UIViewController, UITableViewDataSource,
 UITableViewDelegate, TweetTableViewCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet var tableTopConstraint: NSLayoutConstraint!
     private var defaults = NSUserDefaults.standardUserDefaults()
     
     let TWEETS_PER_LOAD = 20
@@ -102,9 +103,12 @@ UITableViewDelegate, TweetTableViewCellDelegate {
             self.tableView.tableFooterView = nil
         }
         
-        let maxID = replace ? nil : statuses.last?.id
+        var maxID = replace ? nil : statuses.last?.id
+        if maxID != nil {
+            maxID = maxID! - 1
+         }
         
-        println("sinceId \(maxID)")
+        println("maxid \(maxID)")
         
         if !replace {
             self.showFooterSpinner()
