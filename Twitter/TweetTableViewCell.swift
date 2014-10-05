@@ -10,6 +10,7 @@ import UIKit
 
 protocol TweetTableViewCellDelegate {
     func onReplyStatus(status: TwitterStatus)
+    func onUserTab(user: TwitterUser)
 }
 
 class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
@@ -53,6 +54,9 @@ class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
         thumnailImageView.layer.cornerRadius = CGFloat(5)
         thumnailImageView.layer.masksToBounds = true
         thumnailImageView.setImageWithURL(NSURL(string: rootStatus.user!.profileImageUrl!))
+        thumnailImageView.userInteractionEnabled = true
+        var userTab = UITapGestureRecognizer(target: self, action: "onUserTab")
+        thumnailImageView.addGestureRecognizer(userTab)
         
         if status.retweetedTweet {
             let name = status.user!.name!
@@ -71,6 +75,10 @@ class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
         if let status = self.status {
             delegate?.onReplyStatus(status)
         }
+    }
+    
+    func onUserTab() {
+        delegate?.onUserTab(status!.rootStatus.user!)
     }
     
     

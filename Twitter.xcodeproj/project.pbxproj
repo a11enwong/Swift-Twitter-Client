@@ -26,6 +26,8 @@
 		953944AA19DDC3E8004676FD /* MenuViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953944A819DDC3E8004676FD /* MenuViewController.swift */; };
 		953944AB19DDC3E8004676FD /* MenuViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 953944A919DDC3E8004676FD /* MenuViewController.xib */; };
 		953944AD19DDE94C004676FD /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 953944AC19DDE94C004676FD /* MainViewController.swift */; };
+		95671ED519E11156000E321A /* MenuProfileHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95671ED419E11156000E321A /* MenuProfileHeaderView.swift */; };
+		95671ED719E1116A000E321A /* MenuProfileHeaderView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95671ED619E1116A000E321A /* MenuProfileHeaderView.xib */; };
 		95990B5D19DE5951001AA4DF /* BaseStatusViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95990B5B19DE5951001AA4DF /* BaseStatusViewController.swift */; };
 		95990B5E19DE5951001AA4DF /* BaseStatusViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 95990B5C19DE5951001AA4DF /* BaseStatusViewController.xib */; };
 		95990B6419DE6968001AA4DF /* MentionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 95990B6319DE6968001AA4DF /* MentionsViewController.swift */; };
@@ -117,6 +119,8 @@
 		953944A819DDC3E8004676FD /* MenuViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuViewController.swift; sourceTree = "<group>"; };
 		953944A919DDC3E8004676FD /* MenuViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuViewController.xib; sourceTree = "<group>"; };
 		953944AC19DDE94C004676FD /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		95671ED419E11156000E321A /* MenuProfileHeaderView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MenuProfileHeaderView.swift; sourceTree = "<group>"; };
+		95671ED619E1116A000E321A /* MenuProfileHeaderView.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = MenuProfileHeaderView.xib; sourceTree = "<group>"; };
 		95990B5B19DE5951001AA4DF /* BaseStatusViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BaseStatusViewController.swift; sourceTree = "<group>"; };
 		95990B5C19DE5951001AA4DF /* BaseStatusViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = BaseStatusViewController.xib; sourceTree = "<group>"; };
 		95990B6319DE6968001AA4DF /* MentionsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MentionsViewController.swift; sourceTree = "<group>"; };
@@ -306,6 +310,8 @@
 				950F4D3819D89BCB007D6E22 /* TweetButtonsView.xib */,
 				95E4E1FB19DFB33900C3D3DF /* ProfileHeaderView.swift */,
 				95E4E1FD19DFB35300C3D3DF /* ProfileHeaderView.xib */,
+				95671ED419E11156000E321A /* MenuProfileHeaderView.swift */,
+				95671ED619E1116A000E321A /* MenuProfileHeaderView.xib */,
 			);
 			name = views;
 			sourceTree = "<group>";
@@ -446,6 +452,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				95671ED719E1116A000E321A /* MenuProfileHeaderView.xib in Resources */,
 				9526FB1619D73E6000AA74BF /* UserHeaderView.xib in Resources */,
 				95F79ED419D3D8FD00C5EA1D /* Main.storyboard in Resources */,
 				95F79ED919D3D8FD00C5EA1D /* LaunchScreen.xib in Resources */,
@@ -518,6 +525,7 @@
 				950F4D3B19D89BE0007D6E22 /* TweetButtonsView.swift in Sources */,
 				953944AD19DDE94C004676FD /* MainViewController.swift in Sources */,
 				953944AA19DDC3E8004676FD /* MenuViewController.swift in Sources */,
+				95671ED519E11156000E321A /* MenuProfileHeaderView.swift in Sources */,
 				9526FB1819D7426000AA74BF /* ComposeViewController.swift in Sources */,
 				950F4D2619D77666007D6E22 /* TweetCounterView.swift in Sources */,
 				950F4D4119D8B2E1007D6E22 /* TweetActionsObserver.swift in Sources */,

@@ -51,8 +51,10 @@ class ProfileHeaderView: UIView {
         nameTextView.text = user.name!
         screenNameTextView.text = "@\(user.screenName!)"
         
-        coverImage.setImageWithURL(NSURL(string: user.profileBannerUrl!))
-        view.sendSubviewToBack(coverImage)
+        if let profileBannerUrl = user.profileBannerUrl {
+            coverImage.setImageWithURL(NSURL(string: profileBannerUrl))
+            view.sendSubviewToBack(coverImage)
+        }
         
         profileImage.layer.masksToBounds = true
         profileImage.layer.cornerRadius = 5.0

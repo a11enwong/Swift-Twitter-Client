@@ -63,7 +63,6 @@ UITableViewDelegate, TweetTableViewCellDelegate {
         cell.loadStatus(statuses[indexPath.row])
         cell.delegate = self
         
-        println("Row \(indexPath.row) from \(statuses.count)")
         if statuses.count == (indexPath.row + 1) && !endResults && !fetchingData {
             fetchTwitterHomeStream(replace: false)
         }
@@ -185,6 +184,10 @@ UITableViewDelegate, TweetTableViewCellDelegate {
         tableView.tableFooterView = spinner
     }
     
-
+    func onUserTab(user: TwitterUser) {
+        var controller = ProfileViewController(nibName: "BaseStatusViewController", bundle: nil)
+        controller.user = user
+        navigationController?.pushViewController(controller, animated: true)
+    }
     
 }

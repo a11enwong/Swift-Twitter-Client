@@ -34,6 +34,7 @@ enum MenuViewControllerItems: Int {
 class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var delegate: MenuViewControllerDelegate?
+    var defaults = NSUserDefaults.standardUserDefaults()
     @IBOutlet var tableView: UITableView!
 
     override func viewDidLoad() {
@@ -43,6 +44,12 @@ class MenuViewController: UIViewController, UITableViewDataSource, UITableViewDe
         tableView.dataSource = self
         
         tableView.tableFooterView = UIView(frame: CGRectZero)
+        
+        let data = defaults.objectForKey("account") as NSData?
+        let account = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as TwitterAccount
+        var headerView = MenuProfileHeaderView(frame: CGRectMake(0, 0, tableView.frame.width, 62))
+        headerView.show(account.user)
+        tableView.tableHeaderView = headerView
     }
 
     override func didReceiveMemoryWarning() {

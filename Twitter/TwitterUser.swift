@@ -18,6 +18,7 @@ class TwitterUser: NSObject, NSCoding {
     var tweetsCount: Int?
     var followingCount: Int?
     var followersCount: Int?
+    var about: String?
     
     init( jsonValue: Dictionary<String, JSONValue>) {
         userId = jsonValue["id"]?.integer
@@ -28,6 +29,7 @@ class TwitterUser: NSObject, NSCoding {
         tweetsCount = jsonValue["statuses_count"]?.integer
         followingCount = jsonValue["friends_count"]?.integer
         followersCount = jsonValue["followers_count"]?.integer
+        about = jsonValue["description"]?.string
     }
     
     required init(coder aDecoder: NSCoder) {
@@ -39,6 +41,7 @@ class TwitterUser: NSObject, NSCoding {
         tweetsCount  = aDecoder.decodeObjectForKey("tweetsCount") as? Int
         followingCount  = aDecoder.decodeObjectForKey("followingCount") as? Int
         followersCount  = aDecoder.decodeObjectForKey("followersCount") as? Int
+        about = aDecoder.decodeObjectForKey("about") as? String
     }
     
     func encodeWithCoder(aCoder: NSCoder) {
@@ -74,6 +77,10 @@ class TwitterUser: NSObject, NSCoding {
         
         if let followersCount = self.followersCount{
             aCoder.encodeObject(followersCount, forKey: "followersCount")
+        }
+        
+        if let about = self.about{
+            aCoder.encodeObject(about, forKey: "about")
         }
     }
 }

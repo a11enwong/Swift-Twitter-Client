@@ -28,6 +28,8 @@ class ProfileViewController: BaseStatusViewController, UIScrollViewDelegate {
         profileHeaderView?.show(user!)
         self.view.addSubview(profileHeaderView!)
         self.view.sendSubviewToBack(profileHeaderView!)
+        
+        self.title = user?.name
 
         
         let headerFrame = CGRect(x: 0, y: 0, width: view.frame.width, height: HEADER_HEIGHT)
@@ -45,8 +47,6 @@ class ProfileViewController: BaseStatusViewController, UIScrollViewDelegate {
     }
     
     func scrollViewDidScroll(scrollView: UIScrollView) {
-        println("view scrolled \(tableView.contentOffset.y)")
-        
         let offset = tableView.contentOffset.y
         
         if offset < 0 {
