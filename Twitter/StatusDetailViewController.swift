@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatusDetailViewController: UIViewController {
+class StatusDetailViewController: UIViewController, TweetButtonsViewDelegate {
 
     @IBOutlet weak var userHeaderView: UserHeaderView!
     @IBOutlet weak var statusTextView: UITextView!
@@ -32,11 +32,10 @@ class StatusDetailViewController: UIViewController {
         navigationController?.navigationBar.tintColor = ColorPalette.White.get()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reply",
-            style: UIBarButtonItemStyle.Plain, target: self, action: "onReply")
+            style: UIBarButtonItemStyle.Plain, target: self, action: "onReplyTab")
         self.navigationItem.rightBarButtonItem?.tintColor = ColorPalette.White.get()
         
-        
-        
+        tweetActionsView.delegate = self
     }
     
     func showUI() {
@@ -84,11 +83,13 @@ class StatusDetailViewController: UIViewController {
         showUI()
     }
     
-    func onReply() {
-        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("ComposeNavigationController") as UINavigationController
+    func onReplyTab() {
+        var storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let navigationController = storyboard.instantiateViewControllerWithIdentifier("ComposeNavigationController") as UINavigationController
         let controller = navigationController.viewControllers.first as ComposeViewController
         controller.status = status
         
         presentViewController(navigationController, animated: true, completion: nil)
     }
+
 }

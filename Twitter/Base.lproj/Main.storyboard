@@ -49,7 +49,8 @@
                         </connections>
                     </view>
                     <navigationItem key="navigationItem" id="T5k-t6-HSQ">
-                        <barButtonItem key="leftBarButtonItem" image="menu" id="ZMq-WT-jp5"/>
+                        <barButtonItem key="leftBarButtonItem" image="menu" width="10" id="ZMq-WT-jp5"/>
+                        <barButtonItem key="rightBarButtonItem" image="compose" width="5" id="wsU-nu-6Jy"/>
                     </navigationItem>
                     <connections>
                         <outlet property="contentContainer" destination="1y1-ap-ZaK" id="sEA-Og-dFT"/>
@@ -317,6 +318,7 @@
     </scenes>
     <resources>
         <image name="button_login" width="290" height="62"/>
+        <image name="compose" width="32" height="32"/>
         <image name="menu" width="42" height="42"/>
     </resources>
 </document>

@@ -53,9 +53,17 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
         navigationItem.leftBarButtonItem?.target = self
         navigationItem.leftBarButtonItem?.action = "toggleMenu"
         
+        let composeImage = UIImage(named: "compose").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
+        navigationItem.rightBarButtonItem?.image = composeImage
+        navigationItem.rightBarButtonItem?.tintColor = ColorPalette.White.get()
+        navigationItem.rightBarButtonItem?.target = self
+        navigationItem.rightBarButtonItem?.action = "composeTweet"
+        
         let data = defaults.objectForKey("account") as NSData?
         let account = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as TwitterAccount
         currentUser = account.user
+        
+        showContainers()
     }
     
     func getController(name: String, generator: () -> UIViewController) -> UIViewController {
@@ -66,7 +74,7 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
         return controllers[name]!
     }
     
-    override func viewDidAppear(animated: Bool) {
+    func showContainers() {
         println("screen \(UIScreen.mainScreen().bounds.width), container \(contentContainer.frame.width)")
         
         activeViewController = getController("home", generator: { () -> UIViewController in
@@ -94,10 +102,10 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
     }
     
     func animateMenu(constant: CGFloat) {
-        UIView.animateWithDuration(0.5, animations: { () -> Void in
+        UIView.animateWithDuration(0.5, delay: 0, options: .CurveEaseInOut, animations: { () -> Void in
             self.menuLeftConstraint.constant = constant
             self.view.layoutIfNeeded()
-            }, completion: nil)
+        }, completion: nil)
     }
     
     func closeMenu() {
@@ -210,5 +218,12 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
             
         }
         closeMenu()
+    }
+    
+    func composeTweet() {
+        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("ComposeNavigationController") as UINavigationController
+        let controller = navigationController.viewControllers.first as ComposeViewController
+        
+        presentViewController(navigationController, animated: true, completion: nil)
     }
 }

@@ -170,7 +170,8 @@ UITableViewDelegate, TweetTableViewCellDelegate {
     }
     
     func onReplyStatus(status: TwitterStatus) {
-        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("ComposeNavigationController") as UINavigationController
+        var storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let navigationController = storyboard.instantiateViewControllerWithIdentifier("ComposeNavigationController") as UINavigationController
         let controller = navigationController.viewControllers.first as ComposeViewController
         controller.status = status
         
