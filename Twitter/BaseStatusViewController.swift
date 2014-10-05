@@ -27,6 +27,8 @@ UITableViewDelegate, TweetTableViewCellDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.edgesForExtendedLayout = .None;
+        self.automaticallyAdjustsScrollViewInsets = false;
         
         refreshControl.attributedTitle = NSAttributedString(string: "Pull to Refersh")
         refreshControl.addTarget(self, action: "onPullToRefresh", forControlEvents: UIControlEvents.ValueChanged)

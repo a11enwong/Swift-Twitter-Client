@@ -42,6 +42,9 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        self.edgesForExtendedLayout = .None;
+        self.automaticallyAdjustsScrollViewInsets = false;
+        
         title = "Home"
         navigationController?.navigationBar.barTintColor = ColorPalette.Blue.get()
         navigationController?.navigationBar.titleTextAttributes = NSDictionary(
@@ -81,7 +84,6 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
             HomeViewController(nibName: "BaseStatusViewController", bundle: nil)
         })
         
-        
         var menuController = getController("menu", generator: { () -> UIViewController in
             var controller = MenuViewController(nibName: "MenuViewController", bundle: nil)
             controller.delegate = self
@@ -92,7 +94,6 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
         menuController.view.frame = menuContainer.bounds
         self.view.layoutIfNeeded()
         menuContainer.addSubview(menuController.view)
-        
         menuLeftConstraint.constant = menuContainer.frame.width * -1 - 16
     }
 

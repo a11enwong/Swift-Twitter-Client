@@ -25,6 +25,7 @@ class ProfileViewController: BaseStatusViewController, UIScrollViewDelegate {
     func setupHeaderView() {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: HEADER_HEIGHT)
         profileHeaderView = ProfileHeaderView(frame: frame)
+        profileHeaderView?.autoresizingMask = .FlexibleWidth
         profileHeaderView?.show(user!)
         self.view.addSubview(profileHeaderView!)
         self.view.sendSubviewToBack(profileHeaderView!)
