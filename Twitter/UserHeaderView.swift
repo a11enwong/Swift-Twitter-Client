@@ -16,6 +16,12 @@ class UserHeaderView: UIView {
     @IBOutlet weak var nameLabel: UILabel!
     @IBOutlet weak var screenNameLabel: UILabel!
     
+    var user: TwitterUser! {
+        didSet(oldValue) {
+            showUI()
+        }
+    }
+    
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -36,12 +42,12 @@ class UserHeaderView: UIView {
         self.addConstraints(view1_constraint_V)
     }
     
-    func loadUser(user: TwitterUser) {
+    func showUI() {
         thumbnailImageView.layer.cornerRadius = CGFloat(5)
         thumbnailImageView.layer.masksToBounds = true
         thumbnailImageView.setImageWithURL(NSURL(string: user.profileImageUrl!))
         
-        nameLabel.text = user.name!
+        nameLabel.text = user.name
         screenNameLabel.text = "@\(user.screenName!)"
     }
 

@@ -19,6 +19,12 @@ class ProfileHeaderView: UIView {
     @IBOutlet var followersCountLabel: UILabel!
     @IBOutlet var followeesCountLabel: UILabel!
     
+    var user: TwitterUser! {
+        didSet(oldValue) {
+            showUI()
+        }
+    }
+    
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
         setup()
@@ -47,8 +53,8 @@ class ProfileHeaderView: UIView {
         self.addConstraints(view1_constraint_V)
     }
     
-    func show(user: TwitterUser) {
-        nameTextView.text = user.name!
+    func showUI() {
+        nameTextView.text = user.name
         screenNameTextView.text = "@\(user.screenName!)"
         
         if let profileBannerUrl = user.profileBannerUrl {

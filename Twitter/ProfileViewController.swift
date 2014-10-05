@@ -11,7 +11,7 @@ import SwifteriOS
 
 class ProfileViewController: BaseStatusViewController, UIScrollViewDelegate {
     var user: TwitterUser?
-    var profileHeaderView: ProfileHeaderView?
+    var profileHeaderView: ProfileHeaderView!
     let HEADER_HEIGHT: CGFloat = 160
     
     override func viewDidLoad() {
@@ -25,10 +25,10 @@ class ProfileViewController: BaseStatusViewController, UIScrollViewDelegate {
     func setupHeaderView() {
         let frame = CGRect(x: 0, y: 0, width: view.frame.width, height: HEADER_HEIGHT)
         profileHeaderView = ProfileHeaderView(frame: frame)
-        profileHeaderView?.autoresizingMask = .FlexibleWidth
-        profileHeaderView?.show(user!)
+        profileHeaderView.autoresizingMask = .FlexibleWidth
+        profileHeaderView.user = user!
         self.view.addSubview(profileHeaderView!)
-        self.view.sendSubviewToBack(profileHeaderView!)
+        self.view.sendSubviewToBack(profileHeaderView)
         
         self.title = user?.name
 
@@ -43,7 +43,7 @@ class ProfileViewController: BaseStatusViewController, UIScrollViewDelegate {
     //getStatusesHomeTimelineWithCount
     override func abstractGetStatuses(count: Int?, sinceID: Int?, maxID: Int?, trimUser: Bool?, contributorDetails: Bool?,
         includeEntities: Bool?, success: ((statuses: [JSONValue]?) -> Void)?, failure: Swifter.FailureHandler?) {
-            swifter.getStatusesUserTimelineWithUserID(String(user!.userId!), count: count, sinceID: sinceID, maxID: maxID, trimUser: trimUser,
+            swifter.getStatusesUserTimelineWithUserID(String(user!.userId), count: count, sinceID: sinceID, maxID: maxID, trimUser: trimUser,
                 contributorDetails: contributorDetails, includeEntities: includeEntities, success: success, failure: failure)
     }
     

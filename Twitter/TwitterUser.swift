@@ -10,10 +10,10 @@ import Foundation
 import SwifteriOS
 
 class TwitterUser: NSObject, NSCoding {
-    var userId: Int?
+    var userId: Int
     var profileBannerUrl: String?
     var profileImageUrl: String?
-    var name: String?
+    var name: String
     var screenName: String?
     var tweetsCount: Int?
     var followingCount: Int?
@@ -21,10 +21,10 @@ class TwitterUser: NSObject, NSCoding {
     var about: String?
     
     init( jsonValue: Dictionary<String, JSONValue>) {
-        userId = jsonValue["id"]?.integer
+        userId = (jsonValue["id"]?.integer)!
         profileBannerUrl = jsonValue["profile_banner_url"]?.string
         profileImageUrl = jsonValue["profile_image_url"]?.string
-        name = jsonValue["name"]?.string
+        name = (jsonValue["name"]?.string)!
         screenName = jsonValue["screen_name"]?.string
         tweetsCount = jsonValue["statuses_count"]?.integer
         followingCount = jsonValue["friends_count"]?.integer
@@ -33,10 +33,10 @@ class TwitterUser: NSObject, NSCoding {
     }
     
     required init(coder aDecoder: NSCoder) {
-        userId = aDecoder.decodeObjectForKey("userId") as? Int
+        userId = aDecoder.decodeObjectForKey("userId") as Int
         profileBannerUrl  = aDecoder.decodeObjectForKey("profileBannerUrl") as? String
         profileImageUrl  = aDecoder.decodeObjectForKey("profileImageUrl") as? String
-        name  = aDecoder.decodeObjectForKey("name") as? String
+        name  = aDecoder.decodeObjectForKey("name") as String
         screenName  = aDecoder.decodeObjectForKey("screenName") as? String
         tweetsCount  = aDecoder.decodeObjectForKey("tweetsCount") as? Int
         followingCount  = aDecoder.decodeObjectForKey("followingCount") as? Int
@@ -46,10 +46,7 @@ class TwitterUser: NSObject, NSCoding {
     
     func encodeWithCoder(aCoder: NSCoder) {
         
-        if let userId = self.userId{
-            aCoder.encodeObject(userId, forKey: "userId")
-        }
-        
+        aCoder.encodeObject(userId, forKey: "userId")
         
         if let profileBannerUrl = self.profileBannerUrl{
             aCoder.encodeObject(profileBannerUrl, forKey: "profileBannerUrl")
@@ -59,9 +56,7 @@ class TwitterUser: NSObject, NSCoding {
             aCoder.encodeObject(profileImageUrl, forKey: "profileImageUrl")
         }
         
-        if let name = self.name{
-            aCoder.encodeObject(name, forKey: "name")
-        }
+        aCoder.encodeObject(name, forKey: "name")
         
         if let screenName = self.screenName{
             aCoder.encodeObject(screenName, forKey: "screenName")

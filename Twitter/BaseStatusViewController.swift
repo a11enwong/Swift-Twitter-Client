@@ -14,7 +14,6 @@ UITableViewDelegate, TweetTableViewCellDelegate {
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet var tableTopConstraint: NSLayoutConstraint!
-    private var defaults = NSUserDefaults.standardUserDefaults()
     
     let TWEETS_PER_LOAD = 20
     var swifter = SwifterApi.sharedInstance
@@ -41,9 +40,15 @@ UITableViewDelegate, TweetTableViewCellDelegate {
         
         fetchTwitterHomeStream()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onStatusCreated:", name: "statusCreated", object: nil)
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onStatusUpdated:", name: "statusUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserverForName(AppNotifications.StatusCreated.get(), object: nil, queue: NSOperationQueue.mainQueue()) { (notification) -> Void in
+            self.onStatusCreated(notification)
+            return
+        }
         
+        NSNotificationCenter.defaultCenter().addObserverForName(AppNotifications.StatusUpdated.get(), object: nil, queue: NSOperationQueue.mainQueue()) { (notification) -> Void in
+            self.onStatusUpdated(notification)
+            return
+        }
         
         tableView.registerNib(UINib(nibName: "TweetTableViewCell", bundle: nil), forCellReuseIdentifier: "TweetTableViewCell")
         tableView.tableFooterView = UIView(frame: CGRectZero)
@@ -62,7 +67,7 @@ UITableViewDelegate, TweetTableViewCellDelegate {
     func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         var cell = reusableTableCell("TweetTableViewCell") as TweetTableViewCell
         
-        cell.loadStatus(statuses[indexPath.row])
+        cell.status = statuses[indexPath.row]
         cell.delegate = self
         
         if statuses.count == (indexPath.row + 1) && !endResults && !fetchingData {

@@ -20,14 +20,18 @@ class StatusDetailViewController: UIViewController, TweetButtonsViewDelegate {
     
     var tweetActionsObserver: TweetActionsObserver = TweetActionsObserver.sharedInstance
     
-    var status: TwitterStatus?
+    var status: TwitterStatus!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         showUI()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onStatusUpdated:", name: "statusUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserverForName(AppNotifications.StatusUpdated.get(), object: nil, queue: NSOperationQueue.mainQueue()) { (notification) -> Void in
+            self.onStatusUpdated(notification)
+            return
+        }
+        
         navigationItem.title = "Tweet"
         navigationController?.navigationBar.tintColor = ColorPalette.White.get()
         
@@ -39,16 +43,16 @@ class StatusDetailViewController: UIViewController, TweetButtonsViewDelegate {
     }
     
     func showUI() {
-        statusTextView.text = status?.rootStatus.text
+        statusTextView.text = status.rootStatus.text
         textHeightConstraint.constant = self.heightForTextView() + 25.0
-        tweetActionsView.showStatus(status!)
-        userHeaderView.loadUser(status!.rootStatus.user!)
-        retweetsCount.text = "\(status!.rootStatus.retweetCount!)"
-        favoritesCount.text = "\(status!.rootStatus.favoriteCount!)"
+        tweetActionsView.status = status
+        userHeaderView.user = status!.rootStatus.user
+        retweetsCount.text = "\(status.rootStatus.retweetCount!)"
+        favoritesCount.text = "\(status.rootStatus.favoriteCount!)"
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        timeLabel.text = dateFormatter.stringFromDate(status!.rootStatus.createdAt!)
+        timeLabel.text = dateFormatter.stringFromDate(status.rootStatus.createdAt!)
         
     }
 

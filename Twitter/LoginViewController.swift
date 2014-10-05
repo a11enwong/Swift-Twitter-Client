@@ -12,13 +12,10 @@ import SwifteriOS
 class LoginViewController: UIViewController {
 
     private var swifter = SwifterApi.sharedInstance
-    private var defaults = NSUserDefaults.standardUserDefaults()
-    
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
     
     @IBAction func didTouchUpInsideLoginButton(sender: AnyObject) {
         swifter.client.credential = nil
@@ -64,7 +61,7 @@ class LoginViewController: UIViewController {
             let data = NSKeyedArchiver.archivedDataWithRootObject(account)
             
             println("LOGGED USER ID: \(user.userId)")
-            self.defaults.setObject(data, forKey: "account")
+            NSUserDefaults.standardUserDefaults().setObject(data, forKey: "account")
             
             self.goToHomeController()
         }, failure: failureHandler())

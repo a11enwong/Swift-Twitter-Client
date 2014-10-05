@@ -14,6 +14,12 @@ class MenuProfileHeaderView: UIView {
     @IBOutlet var userImage: UIImageView!
     @IBOutlet var nameLabel: UILabel!
     @IBOutlet var aboutLabel: UILabel!
+    
+    var user: TwitterUser! {
+        didSet(oldValue) {
+            showUI()
+        }
+    }
 
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -43,7 +49,7 @@ class MenuProfileHeaderView: UIView {
         self.addConstraints(view1_constraint_V)
     }
     
-    func show(user: TwitterUser) {
+    func showUI() {
         userImage.setImageWithURL(NSURL(string: user.profileImageUrl!))
         nameLabel.text = user.name
         aboutLabel.text = user.about

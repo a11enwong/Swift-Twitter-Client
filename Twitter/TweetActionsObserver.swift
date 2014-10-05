@@ -76,7 +76,7 @@ class TweetActionsObserver: NSObject {
     
     private func sendUpdatedStatusNotification(status: TwitterStatus) {
         let data = ["status": status]
-        NSNotificationCenter.defaultCenter().postNotificationName("statusUpdated", object: self, userInfo: data)
+        NSNotificationCenter.defaultCenter().postNotificationName(AppNotifications.StatusUpdated.get(), object: self, userInfo: data)
     }
     
 }

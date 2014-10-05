@@ -13,7 +13,6 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
     @IBOutlet var contentContainer: UIView!
     @IBOutlet var menuLeftConstraint: NSLayoutConstraint!
     var showingMenu = false
-    var defaults = NSUserDefaults.standardUserDefaults()
     var swifter = SwifterApi.sharedInstance
     var controllers = [String: UIViewController]()
     var currentUser: TwitterUser?
@@ -62,7 +61,7 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
         navigationItem.rightBarButtonItem?.target = self
         navigationItem.rightBarButtonItem?.action = "composeTweet"
         
-        let data = defaults.objectForKey("account") as NSData?
+        let data = NSUserDefaults.standardUserDefaults().objectForKey("account") as NSData?
         let account = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as TwitterAccount
         currentUser = account.user
         
@@ -188,7 +187,7 @@ class MainViewController: UIViewController, MenuViewControllerDelegate {
     }
     
     func onSignOut() {
-        defaults.setObject(nil, forKey: "account")
+        NSUserDefaults.standardUserDefaults().setObject(nil, forKey: "account")
         swifter.client.credential = nil
         
         let loginViewController = self.storyboard!.instantiateViewControllerWithIdentifier("LoginViewController") as LoginViewController
