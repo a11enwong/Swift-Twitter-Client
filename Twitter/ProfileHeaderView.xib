@@ -6,6 +6,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ProfileHeaderView" customModule="Twitter" customModuleProvider="target">
             <connections>
+                <outlet property="blurredCoverImage" destination="ePq-rz-idI" id="f34-wN-Yxq"/>
                 <outlet property="coverImage" destination="JD5-kk-j1d" id="3OD-33-wwn"/>
                 <outlet property="followeesCountLabel" destination="kU8-y1-xsA" id="FjS-i9-IHb"/>
                 <outlet property="followersCountLabel" destination="ugU-v4-fRD" id="wHc-4b-H1c"/>
@@ -21,6 +22,12 @@
             <rect key="frame" x="0.0" y="0.0" width="313" height="156"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ePq-rz-idI">
+                    <rect key="frame" x="0.0" y="0.0" width="313" height="117"/>
+                </imageView>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JD5-kk-j1d">
+                    <rect key="frame" x="0.0" y="0.0" width="313" height="117"/>
+                </imageView>
                 <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="5YC-4h-Vdq">
                     <rect key="frame" x="127" y="10" width="60" height="60"/>
                     <constraints>
@@ -117,17 +124,16 @@
                         <constraint firstAttribute="height" constant="40" id="wrg-Nx-gL5"/>
                     </constraints>
                 </view>
-                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="JD5-kk-j1d">
-                    <rect key="frame" x="0.0" y="0.0" width="313" height="117"/>
-                </imageView>
             </subviews>
             <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="5YC-4h-Vdq" firstAttribute="top" secondItem="e0G-Gk-aZh" secondAttribute="top" constant="10" id="AFY-UN-bSl"/>
                 <constraint firstItem="HYF-co-f5c" firstAttribute="leading" secondItem="uLk-fZ-GoI" secondAttribute="trailing" constant="1" id="Cvk-9E-CNw"/>
                 <constraint firstItem="JD5-kk-j1d" firstAttribute="leading" secondItem="e0G-Gk-aZh" secondAttribute="leading" id="Mbb-ve-DA0"/>
+                <constraint firstItem="ePq-rz-idI" firstAttribute="top" secondItem="e0G-Gk-aZh" secondAttribute="top" id="Ml1-a4-T6u"/>
                 <constraint firstItem="gpQ-nu-zwA" firstAttribute="width" secondItem="HYF-co-f5c" secondAttribute="width" id="N2i-hu-kjC"/>
                 <constraint firstItem="vr4-hv-FT0" firstAttribute="centerX" secondItem="5YC-4h-Vdq" secondAttribute="centerX" constant="0.5" id="PwP-c8-ex9"/>
+                <constraint firstAttribute="bottom" secondItem="ePq-rz-idI" secondAttribute="bottom" constant="39" id="Ste-nH-cHQ"/>
                 <constraint firstItem="uLk-fZ-GoI" firstAttribute="leading" secondItem="e0G-Gk-aZh" secondAttribute="leading" id="W3j-mb-0F9"/>
                 <constraint firstAttribute="bottom" secondItem="HYF-co-f5c" secondAttribute="bottom" constant="1" id="XbF-Gt-R01"/>
                 <constraint firstAttribute="bottom" secondItem="JD5-kk-j1d" secondAttribute="bottom" constant="39" id="cDw-7i-cX9"/>
@@ -135,12 +141,14 @@
                 <constraint firstItem="vr4-hv-FT0" firstAttribute="top" secondItem="5YC-4h-Vdq" secondAttribute="bottom" constant="2" id="ewf-HX-yhS"/>
                 <constraint firstItem="Mp1-I9-Zfa" firstAttribute="centerX" secondItem="5YC-4h-Vdq" secondAttribute="centerX" constant="3" id="g9k-0n-SDO"/>
                 <constraint firstAttribute="bottom" secondItem="gpQ-nu-zwA" secondAttribute="bottom" constant="1" id="gOQ-F4-lub"/>
+                <constraint firstItem="ePq-rz-idI" firstAttribute="leading" secondItem="e0G-Gk-aZh" secondAttribute="leading" id="i6c-AL-E28"/>
                 <constraint firstAttribute="trailing" secondItem="gpQ-nu-zwA" secondAttribute="trailing" id="j2t-h1-tzW"/>
                 <constraint firstAttribute="centerX" secondItem="5YC-4h-Vdq" secondAttribute="centerX" id="kva-ww-9YQ"/>
                 <constraint firstAttribute="bottom" secondItem="uLk-fZ-GoI" secondAttribute="bottom" constant="1" id="mQ4-41-J4C"/>
                 <constraint firstAttribute="trailing" secondItem="JD5-kk-j1d" secondAttribute="trailing" id="mpu-hj-Vta"/>
                 <constraint firstItem="Mp1-I9-Zfa" firstAttribute="top" secondItem="vr4-hv-FT0" secondAttribute="bottom" constant="1" id="rIs-2i-0UK"/>
                 <constraint firstItem="gpQ-nu-zwA" firstAttribute="leading" secondItem="HYF-co-f5c" secondAttribute="trailing" constant="1" id="udV-sK-8u5"/>
+                <constraint firstAttribute="trailing" secondItem="ePq-rz-idI" secondAttribute="trailing" id="w83-Z8-MrN"/>
                 <constraint firstItem="JD5-kk-j1d" firstAttribute="top" secondItem="e0G-Gk-aZh" secondAttribute="top" id="z7p-AY-vt5"/>
             </constraints>
             <nil key="simulatedStatusBarMetrics"/>

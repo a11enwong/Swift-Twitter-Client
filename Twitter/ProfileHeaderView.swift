@@ -13,6 +13,7 @@ class ProfileHeaderView: UIView {
     @IBOutlet var view: UIView!
     @IBOutlet var profileImage: UIImageView!
     @IBOutlet var coverImage: UIImageView!
+    @IBOutlet var blurredCoverImage: UIImageView!
     @IBOutlet var nameTextView: UILabel!
     @IBOutlet var screenNameTextView: UILabel!
     @IBOutlet var tweetsCountLabel: UILabel!
@@ -58,8 +59,11 @@ class ProfileHeaderView: UIView {
         screenNameTextView.text = "@\(user.screenName!)"
         
         if let profileBannerUrl = user.profileBannerUrl {
-            coverImage.setImageWithURL(NSURL(string: profileBannerUrl))
-            view.sendSubviewToBack(coverImage)
+            coverImage.setImageWithURLRequest(NSURLRequest(URL: NSURL(string: profileBannerUrl)), placeholderImage: nil
+                , success: { (request, response, image) -> Void in
+                    self.coverImage.image = image
+                    self.blurredCoverImage.setImageToBlur(image, completionBlock: nil)
+            }, failure: nil)
         }
         
         profileImage.layer.masksToBounds = true

@@ -4,3 +4,4 @@
 
 #import <FormatterKit/TTTTimeIntervalFormatter.h>
 #import <AFNetworking/UIImageView+AFNetworking.h>
+#import <LBBlurredImage/UIImageView+LBBlurredImage.h>
