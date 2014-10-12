@@ -1,11 +1,32 @@
 Swift-Twitter-Client
 ====================
 
-~20 hours spent
+~30 hours spent
+
+![ios_assignment_week4](https://cloud.githubusercontent.com/assets/1814099/4551771/7e42d9ec-4e76-11e4-9ca6-c20ef976fd9d.gif)
 
 ![ios_assignment_week3](https://cloud.githubusercontent.com/assets/1814099/4469004/9a245e8c-4909-11e4-93d1-f3e0513e86f1.gif)
 
 ## Completed user stories
+
+ * Hamburger menu
+   * [x] Required: Dragging anywhere in the view should reveal the menu.
+   * [x] Required: The menu should include links to your profile, the home timeline, and the mentions view.
+   * [x] Required: The menu can look similar to the LinkedIn menu below or feel free to take liberty with the UI.
+ * Profile page
+   * [x] Required: Contains the user header view
+   * [ ] Optional: Implement the paging view for the user description.
+   * [x] Optional: As the paging view moves, increase the opacity of the background screen. See the actual Twitter app for this effect
+   * [x] Optional: Pulling down the profile page should blur and resize the header image.
+   * [x] Optional: Contains a section with the users basic stats: # tweets, # following, # followers
+ * Home Timeline
+   * [x] Required: Tapping on a user image should bring up that user's profile page
+ * Account switching
+   * [ ] Optional: Long press on tab bar to bring up Account view with animation
+   * [ ] Optional: Tap account to switch to
+   * [ ] Optional: Include a plus button to Add an Account
+   * [ ] Optional: Swipe to delete an account
+  
 
  * [x] User can sign in using OAuth login flow
  * [x] User can view last 20 tweets from their home timeline

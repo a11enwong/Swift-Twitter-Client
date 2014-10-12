@@ -10,9 +10,8 @@ import UIKit
 
 class ComposeViewController: UIViewController, TweetCounterViewDelegate, UITextViewDelegate {
     
-    private var defaults = NSUserDefaults.standardUserDefaults()
     private var swifter = SwifterApi.sharedInstance
-    var user: TwitterUser?
+    var user: TwitterUser!
     let TWEET_MAX_CHARACTERS = 140
     var status: TwitterStatus?
     var counterButton: TweetCounterView?
@@ -24,18 +23,18 @@ class ComposeViewController: UIViewController, TweetCounterViewDelegate, UITextV
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        let data = defaults.objectForKey("account") as NSData?
+        let data = NSUserDefaults.standardUserDefaults().objectForKey("account") as NSData?
         let account = NSKeyedUnarchiver.unarchiveObjectWithData(data!) as TwitterAccount
         user = account.user
         
-        userHeaderView.loadUser(user!)
+        userHeaderView.user = user!
         
         customLeftBarButton();
         
         statusTextView.becomeFirstResponder()
         statusTextView.delegate = self
         if let status = self.status {
-            statusTextView.text = "@\(status.user!.screenName!) "
+            statusTextView.text = "@\(status.user.screenName!) "
         }
     }
 
@@ -69,7 +68,7 @@ class ComposeViewController: UIViewController, TweetCounterViewDelegate, UITextV
         
         var newStatus = TwitterStatus(text: statusTextView.text, user: user!)
         let data = ["status": newStatus]
-        NSNotificationCenter.defaultCenter().postNotificationName("statusCreated", object: self, userInfo: data)
+        NSNotificationCenter.defaultCenter().postNotificationName(AppNotifications.StatusCreated.get(), object: self, userInfo: data)
         
         swifter.postStatusUpdate(statusTextView.text, inReplyToStatusID: status?.id, lat: nil, long: nil, placeID: nil,
             displayCoordinates: false, trimUser: false, success: { (status) -> Void in

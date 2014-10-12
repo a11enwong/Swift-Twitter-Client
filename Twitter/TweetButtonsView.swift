@@ -20,7 +20,11 @@ class TweetButtonsView: UIView {
     @IBOutlet weak var favoriteImage: UIImageView!
     
     var delegate: TweetButtonsViewDelegate?
-    var status: TwitterStatus?
+    var status: TwitterStatus! {
+        didSet(oldValue) {
+            showUI()
+        }
+    }
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
@@ -76,7 +80,7 @@ class TweetButtonsView: UIView {
         }
     }
     
-    func showStatus(status: TwitterStatus) {
+    func showUI() {
         
         if status.retweeted ?? false {
             retweetImage.tintColor = ColorPalette.Green.get()
@@ -91,9 +95,6 @@ class TweetButtonsView: UIView {
         }
         
         replyImage.tintColor = ColorPalette.Gray.get()
-        
-        
-        self.status = status
     }
     
 

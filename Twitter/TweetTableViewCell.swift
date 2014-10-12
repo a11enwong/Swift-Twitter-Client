@@ -10,6 +10,7 @@ import UIKit
 
 protocol TweetTableViewCellDelegate {
     func onReplyStatus(status: TwitterStatus)
+    func onUserTab(user: TwitterUser)
 }
 
 class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
@@ -27,23 +28,25 @@ class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
     @IBOutlet var retweetImageView: UIImageView!
     
     var delegate: TweetTableViewCellDelegate?
-    var status: TwitterStatus?
+    var status: TwitterStatus! {
+        didSet(oldViewController) {
+            self.updateUI()
+        }
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
 
-    func loadStatus(status: TwitterStatus) {
-        self.status = status
-        
+    func updateUI() {
         let rootStatus = status.rootStatus
         
         retweetImageView.image = UIImage(named: "retweet").imageWithRenderingMode(UIImageRenderingMode.AlwaysTemplate)
         retweetImageView.tintColor = ColorPalette.Gray.get()
         
-        nameLabel.text = rootStatus.user?.name
-        screenNameLabel.text = "@\(rootStatus.user!.screenName!)"
+        nameLabel.text = rootStatus.user.name
+        screenNameLabel.text = "@\(rootStatus.user.screenName!)"
         tweetTextLabel.text = rootStatus.text
         
         var timeIntervalFormater = TTTTimeIntervalFormatter()
@@ -52,10 +55,13 @@ class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
         
         thumnailImageView.layer.cornerRadius = CGFloat(5)
         thumnailImageView.layer.masksToBounds = true
-        thumnailImageView.setImageWithURL(NSURL(string: rootStatus.user!.profileImageUrl!))
+        thumnailImageView.setImageWithURL(NSURL(string: rootStatus.user.profileImageUrl!))
+        thumnailImageView.userInteractionEnabled = true
+        var userTab = UITapGestureRecognizer(target: self, action: "onUserTab")
+        thumnailImageView.addGestureRecognizer(userTab)
         
         if status.retweetedTweet {
-            let name = status.user!.name!
+            let name = status.user.name
             retweetedLabel.text = "\(name) retweeted"
         } else {
             retweetViewHeightConstraint.constant = 0
@@ -63,7 +69,7 @@ class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
         }
         
         buttonsView.delegate = self
-        buttonsView.showStatus(status)
+        buttonsView.status = status
     }
     
     func onReplyTab() {
@@ -71,6 +77,10 @@ class TweetTableViewCell: UITableViewCell, TweetButtonsViewDelegate {
         if let status = self.status {
             delegate?.onReplyStatus(status)
         }
+    }
+    
+    func onUserTab() {
+        delegate?.onUserTab(status!.rootStatus.user)
     }
     
     

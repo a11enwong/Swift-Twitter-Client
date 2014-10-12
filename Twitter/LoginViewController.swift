@@ -12,13 +12,10 @@ import SwifteriOS
 class LoginViewController: UIViewController {
 
     private var swifter = SwifterApi.sharedInstance
-    private var defaults = NSUserDefaults.standardUserDefaults()
-    
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
-    
     
     @IBAction func didTouchUpInsideLoginButton(sender: AnyObject) {
         swifter.client.credential = nil
@@ -62,7 +59,9 @@ class LoginViewController: UIViewController {
             let accessToken = self.swifter.client.credential!.accessToken!
             let account = TwitterAccount(user: user, key: accessToken.key, secret: accessToken.secret)
             let data = NSKeyedArchiver.archivedDataWithRootObject(account)
-            self.defaults.setObject(data, forKey: "account")
+            
+            println("LOGGED USER ID: \(user.userId)")
+            NSUserDefaults.standardUserDefaults().setObject(data, forKey: "account")
             
             self.goToHomeController()
         }, failure: failureHandler())

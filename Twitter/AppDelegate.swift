@@ -13,14 +13,13 @@ import SwifteriOS
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
     var window: UIWindow?
-    private var defaults = NSUserDefaults.standardUserDefaults()
     private var swifter = SwifterApi.sharedInstance
 
 
     func application(application: UIApplication, didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+
         // Override point for customization after application launch.
-        //storyboard = [UIStoryboard storyboardWithName:@"LoggedIn" bundle:[NSBundle mainBundle]];
-        if let data = defaults.objectForKey("account") as NSData? {
+        if let data = NSUserDefaults.standardUserDefaults().objectForKey("account") as NSData? {
             let account = NSKeyedUnarchiver.unarchiveObjectWithData(data) as TwitterAccount
             let credentialToken = SwifterCredential.OAuthAccessToken(key: account.key, secret: account.secret)
             swifter.client.credential = SwifterCredential(accessToken: credentialToken)

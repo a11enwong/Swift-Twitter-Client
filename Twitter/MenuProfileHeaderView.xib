@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="6245" systemVersion="13E28" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6238"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="MenuProfileHeaderView" customModule="Twitter" customModuleProvider="target">
+            <connections>
+                <outlet property="aboutLabel" destination="KfC-XO-jhc" id="W8r-NA-ZMC"/>
+                <outlet property="nameLabel" destination="J66-Tu-9BN" id="7tV-Cx-Dtw"/>
+                <outlet property="userImage" destination="rbT-Vp-1Vj" id="9gQ-EJ-oee"/>
+                <outlet property="view" destination="GZd-kX-AJX" id="qkt-TD-aPe"/>
+            </connections>
+        </placeholder>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="GZd-kX-AJX">
+            <rect key="frame" x="0.0" y="0.0" width="171" height="77"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+            <subviews>
+                <imageView userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="rbT-Vp-1Vj">
+                    <rect key="frame" x="2" y="2" width="60" height="60"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="60" id="R1I-5o-La5"/>
+                        <constraint firstAttribute="height" constant="60" id="aoY-oq-eau"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="J66-Tu-9BN">
+                    <rect key="frame" x="67" y="2" width="43" height="20"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="about" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KfC-XO-jhc">
+                    <rect key="frame" x="67" y="21" width="96" height="17"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+            <constraints>
+                <constraint firstItem="rbT-Vp-1Vj" firstAttribute="top" secondItem="GZd-kX-AJX" secondAttribute="top" constant="2" id="0RY-69-3fq"/>
+                <constraint firstItem="J66-Tu-9BN" firstAttribute="top" secondItem="GZd-kX-AJX" secondAttribute="top" constant="2" id="GEr-dr-bFu"/>
+                <constraint firstItem="J66-Tu-9BN" firstAttribute="leading" secondItem="rbT-Vp-1Vj" secondAttribute="trailing" constant="5" id="Guu-eY-Agj"/>
+                <constraint firstAttribute="trailing" secondItem="KfC-XO-jhc" secondAttribute="trailing" constant="8" id="Hax-E4-Wfc"/>
+                <constraint firstItem="rbT-Vp-1Vj" firstAttribute="leading" secondItem="GZd-kX-AJX" secondAttribute="leading" constant="2" id="opt-hx-UwN"/>
+                <constraint firstItem="KfC-XO-jhc" firstAttribute="top" secondItem="GZd-kX-AJX" secondAttribute="top" constant="21" id="p97-uT-25z"/>
+                <constraint firstItem="KfC-XO-jhc" firstAttribute="leading" secondItem="rbT-Vp-1Vj" secondAttribute="trailing" constant="5" id="tDn-8T-HNX"/>
+            </constraints>
+            <nil key="simulatedStatusBarMetrics"/>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="115.5" y="-56.5"/>
+        </view>
+    </objects>
+</document>

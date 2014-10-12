@@ -11,7 +11,7 @@ import SwifteriOS
 
 class TwitterStatus: NSObject, NSCoding {
     var id: Int?
-    var text: String?
+    var text: String
     var createdAt: NSDate?
     var retweetCount: Int?
     var favoriteCount: Int?
@@ -20,7 +20,7 @@ class TwitterStatus: NSObject, NSCoding {
             return retweetedStatus != nil
         }
     }
-    var user: TwitterUser?
+    var user: TwitterUser
     var retweetedStatus: TwitterStatus?
     var rootStatus: TwitterStatus {
         get {
@@ -33,7 +33,7 @@ class TwitterStatus: NSObject, NSCoding {
     
     init(jsonValue: Dictionary<String, JSONValue>) {
         id = jsonValue["id"]?.integer
-        text = jsonValue["text"]?.string
+        text = (jsonValue["text"]?.string)!
         
         var dateFormater = NSDateFormatter()
         dateFormater.locale = NSLocale(localeIdentifier: "en_US_POSIX")
@@ -66,12 +66,12 @@ class TwitterStatus: NSObject, NSCoding {
     
     required init(coder aDecoder: NSCoder) {
         id  = aDecoder.decodeObjectForKey("id") as? Int
-        text  = aDecoder.decodeObjectForKey("profileImageUrl") as? String
+        text  = aDecoder.decodeObjectForKey("profileImageUrl") as String
         createdAt  = aDecoder.decodeObjectForKey("name") as? NSDate
         retweetCount  = aDecoder.decodeObjectForKey("screenName") as? Int
         favoriteCount  = aDecoder.decodeObjectForKey("tweetsCount") as? Int
         retweetedStatus = aDecoder.decodeObjectForKey("retweetedTweet") as? TwitterStatus
-        user  = aDecoder.decodeObjectForKey("followingCount") as? TwitterUser
+        user  = aDecoder.decodeObjectForKey("followingCount") as TwitterUser
         favorited = aDecoder.decodeObjectForKey("favorited") as? Bool
         retweeted = aDecoder.decodeObjectForKey("retweeted") as? Bool
     }
@@ -81,9 +81,7 @@ class TwitterStatus: NSObject, NSCoding {
             aCoder.encodeObject(id, forKey: "id")
         }
         
-        if let text = self.text{
-            aCoder.encodeObject(text, forKey: "text")
-        }
+        aCoder.encodeObject(text, forKey: "text")
         
         if let createdAt = self.createdAt{
             aCoder.encodeObject(createdAt, forKey: "createdAt")
@@ -97,9 +95,7 @@ class TwitterStatus: NSObject, NSCoding {
             aCoder.encodeObject(retweetedStatus, forKey: "retweetedStatus")
         }
         
-        if let user = self.user{
-            aCoder.encodeObject(user, forKey: "user")
-        }
+        aCoder.encodeObject(user, forKey: "user")
         
         if let favorited = self.favorited {
             aCoder.encodeObject(favorited, forKey: "favorited")

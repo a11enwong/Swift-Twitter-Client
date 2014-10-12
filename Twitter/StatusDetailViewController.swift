@@ -8,7 +8,7 @@
 
 import UIKit
 
-class StatusDetailViewController: UIViewController {
+class StatusDetailViewController: UIViewController, TweetButtonsViewDelegate {
 
     @IBOutlet weak var userHeaderView: UserHeaderView!
     @IBOutlet weak var statusTextView: UITextView!
@@ -20,36 +20,39 @@ class StatusDetailViewController: UIViewController {
     
     var tweetActionsObserver: TweetActionsObserver = TweetActionsObserver.sharedInstance
     
-    var status: TwitterStatus?
+    var status: TwitterStatus!
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         showUI()
         
-        NSNotificationCenter.defaultCenter().addObserver(self, selector: "onStatusUpdated:", name: "statusUpdated", object: nil)
+        NSNotificationCenter.defaultCenter().addObserverForName(AppNotifications.StatusUpdated.get(), object: nil, queue: NSOperationQueue.mainQueue()) { (notification) -> Void in
+            self.onStatusUpdated(notification)
+            return
+        }
+        
         navigationItem.title = "Tweet"
         navigationController?.navigationBar.tintColor = ColorPalette.White.get()
         
         self.navigationItem.rightBarButtonItem = UIBarButtonItem(title: "Reply",
-            style: UIBarButtonItemStyle.Plain, target: self, action: "onReply")
+            style: UIBarButtonItemStyle.Plain, target: self, action: "onReplyTab")
         self.navigationItem.rightBarButtonItem?.tintColor = ColorPalette.White.get()
         
-        
-        
+        tweetActionsView.delegate = self
     }
     
     func showUI() {
-        statusTextView.text = status?.rootStatus.text
+        statusTextView.text = status.rootStatus.text
         textHeightConstraint.constant = self.heightForTextView() + 25.0
-        tweetActionsView.showStatus(status!)
-        userHeaderView.loadUser(status!.rootStatus.user!)
-        retweetsCount.text = "\(status!.rootStatus.retweetCount!)"
-        favoritesCount.text = "\(status!.rootStatus.favoriteCount!)"
+        tweetActionsView.status = status
+        userHeaderView.user = status!.rootStatus.user
+        retweetsCount.text = "\(status.rootStatus.retweetCount!)"
+        favoritesCount.text = "\(status.rootStatus.favoriteCount!)"
         
         let dateFormatter = NSDateFormatter()
         dateFormatter.dateFormat = "MM/dd/yyyy hh:mm a"
-        timeLabel.text = dateFormatter.stringFromDate(status!.rootStatus.createdAt!)
+        timeLabel.text = dateFormatter.stringFromDate(status.rootStatus.createdAt!)
         
     }
 
@@ -84,11 +87,13 @@ class StatusDetailViewController: UIViewController {
         showUI()
     }
     
-    func onReply() {
-        let navigationController = self.storyboard!.instantiateViewControllerWithIdentifier("ComposeNavigationController") as UINavigationController
+    func onReplyTab() {
+        var storyboard = UIStoryboard(name: "Main", bundle: NSBundle.mainBundle())
+        let navigationController = storyboard.instantiateViewControllerWithIdentifier("ComposeNavigationController") as UINavigationController
         let controller = navigationController.viewControllers.first as ComposeViewController
         controller.status = status
         
         presentViewController(navigationController, animated: true, completion: nil)
     }
+
 }
